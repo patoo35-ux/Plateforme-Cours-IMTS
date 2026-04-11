@@ -1,0 +1,564 @@
+/* =========================================
+   VARIABLES GLOBALES (LE THÈME)
+   ========================================= */
+:root {
+  /* Couleurs Principales */
+  --primary-color: #1e3a5f;
+  --primary-light: #eef3fa;
+  --primary-hover: #dce6f5;
+  --accent-color: #e83e00;
+  
+  /* Arrière-plans */
+  --bg-main: #f0f2f5;       /* Gris très doux pour le fond principal */
+  --bg-sidebar: #ffffff;    /* Blanc pur pour la sidebar */
+  --bg-card: #ffffff;       /* Blanc pour les articles */
+  
+  /* Textes & Bordures */
+  --text-main: #334155;     /* Gris foncé, moins agressif que le noir pur */
+  --text-heading: #1e3a5f;
+  --border-color: #e2e8f0;
+  
+  /* Dimensions & Ombres */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================
+   RESET & BASE
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Police système moderne (comme sur Mac, Windows 11 ou Android) */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.7; /* Améliore la lisibilité des longs textes */
+}
+
+/* =========================================
+   HEADER & FOOTER
+   ========================================= */
+header#topBar, footer#downBar {
+  margin-left: 260px;
+  background: var(--primary-color);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+header#topBar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menuToggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 15px;
+  transition: transform 0.2s ease;
+}
+
+#menuToggle:hover {
+  transform: scale(1.1);
+}
+
+footer#downBar {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* =========================================
+   SIDEBAR (MENU)
+   ========================================= */
+#sideBarMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.02);
+}
+
+#sideBarMenu img.logo-menu {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#sideBarMenu h3 {
+  text-align: center;
+  color: var(--text-heading);
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+#sideBarMenu > ul > li > a {
+  display: block;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  border: 1px solid transparent; /* Pour éviter les décalages au survol */
+}
+
+#sideBarMenu > ul > li > a:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary-light);
+}
+#sideBarMenu ul {
+  list-style: none;
+}
+
+#sideBarMenu a {
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 8px 12px;
+  display: inline-block;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+#sideBarMenu a:hover {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  transform: translateX(4px);
+}
+
+/* Lien actif */
+#sidebarNav a.scroll-active,
+.accordionContent a.active {
+  color: var(--primary-color);
+  font-weight: 600;
+  background-color: var(--primary-light);
+  border-left: 4px solid var(--primary-color);
+  padding-left: 8px; /* Ajusté pour compenser la bordure */
+}
+
+/* =========================================
+   ACCORDÉON
+   ========================================= */
+.accordionBtn {
+  width: 100%;
+  background: white;
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  transition: all 0.2s ease;
+}
+
+.accordionBtn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-light);
+}
+
+.accordionBtn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Filtre le picto SVG en blanc quand le bouton est actif */
+.accordionBtn.active .picto {
+  filter: brightness(0) invert(1);
+}
+
+.picto {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: filter 0.2s ease;
+}
+
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  margin-left: 12px;
+  border-left: 2px solid var(--border-color);
+  padding-left: 15px;
+  opacity: 0;
+}
+
+.accordionContent.open {
+  max-height: 3000px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  opacity: 1;
+}
+
+.submenuTitle {
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: var(--text-heading);
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   CONTENU PRINCIPAL (MAIN WINDOW)
+   ========================================= */
+#mainWindow {
+  margin-left: 260px;
+  padding: 40px;
+  min-height: 100vh;
+  max-width: 1200px; /* Évite que le texte soit trop large sur grand écran */
+}
+
+/* Empêche les titres d'être cachés par le header fixe */
+section[id], article[id] {
+  scroll-margin-top: 100px; 
+}
+
+/* Titres */
+#titreModuleHTML, #titreModuleJS, #titreModuleCSS {
+  color: var(--accent-color);
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+#mainWindow h3 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: var(--text-heading);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+#mainWindow h4 {
+  color: var(--text-heading);
+  margin: 20px 0 10px 0;
+  font-size: 1.2rem;
+}
+
+/* Cartes (Articles) */
+#mainWindow article {
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 25px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0,0,0,0.02);
+}
+/* =========================================
+   HIÉRARCHIE DES TITRES DANS LES CARTES
+   ========================================= */
+/* Titre principal de la carte (H2) */
+#mainWindow article h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-weight: 800; /* Très en gras pour s'imposer */
+}
+
+/* Sous-titres des sections (H3) */
+#mainWindow article h3 {
+  font-size: 1.3rem;
+  color: var(--accent-color); /* On utilise l'orange pour bien les distinguer */
+  border-bottom: 1px solid var(--border-color); /* Ligne fine et discrète */
+  padding-bottom: 8px;
+  margin-top: 35px; /* On aère bien au-dessus */
+  margin-bottom: 15px;
+}
+
+/* =========================================
+   TYPOGRAPHIE & LISTES (Indentation et Espacement)
+   ========================================= */
+/* 1. Restaurer l'indentation de base */
+#mainWindow ul,
+#mainWindow ol {
+  margin-left: 1.5rem; 
+  margin-bottom: 1.5rem;
+}
+
+/* 2. Espace entre chaque point de la liste */
+#mainWindow li {
+  margin-bottom: 0.5rem;
+}
+
+/* 3. Décaler visuellement les sous-listes (les puces à l'intérieur des numéros) */
+#mainWindow li > ul,
+#mainWindow li > ol {
+  margin-top: 0.5rem;
+  margin-left: 1.5rem; /* L'indentation supplémentaire */
+  margin-bottom: 0;    /* Évite un double espacement en bas */
+}
+
+/* =========================================
+   ALIGNEMENT DES ICÔNES (Introduction)
+   ========================================= */
+#intro p.avecPicto {
+  display: flex;       /* Active Flexbox pour ce paragraphe */
+  align-items: center; /* Centre l'image et le texte verticalement */
+  gap: 12px;           /* Crée un espace régulier entre l'image et le texte */
+  margin-bottom: 15px; /* Espace un peu les lignes entre elles */
+}
+
+#intro p.avecPicto img.picto {
+  width: 24px;         /* On force une taille identique pour toutes les icônes */
+  height: 24px;
+  flex-shrink: 0;      /* Empêche l'image de s'écraser si le texte est très long */
+}
+/* =========================================
+   LIGNES DE SÉPARATION (Pour structurer les sections)
+   ========================================= */
+/* Ajoute une fine ligne sous les grands points numérotés */
+#mainWindow article > ol > li {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px; 
+}
+
+/* On retire la ligne sous le tout dernier élément pour que ce soit propre */
+#mainWindow article > ol > li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* =========================================
+   ÉLÉMENTS SPÉCIFIQUES (Code, Tableaux...)
+   ========================================= */
+code {
+  background: var(--primary-light);
+  padding: 3px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+pre {
+  background-color: #1e293b; /* Bleu nuit très sombre, plus moderne que le noir pur */
+  color: #f8fafc;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin: 20px 0;
+  border-left: 4px solid var(--accent-color);
+  font-size: 0.95rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+details {
+  margin: 15px 0;
+  padding: 15px;
+  background: var(--bg-main);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--primary-color);
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-heading);
+  outline: none;
+}
+
+details summary:hover {
+  color: var(--accent-color);
+}
+
+/* Tableaux Modernisés */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: white;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+table th, table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+table th {
+  background: var(--primary-light);
+  color: var(--text-heading);
+  font-weight: 600;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+
+/* =========================================
+   RESPONSIVE (MOBILES & TABLETTES)
+   ========================================= */
+@media (max-width: 768px) {
+  header#topBar, footer#downBar {
+    margin-left: 0;
+  }
+  
+  header#topBar {
+    justify-content: flex-start;
+  }
+
+  #menuToggle {
+    display: block;
+  }
+
+  #sideBarMenu {
+    left: -260px;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #sideBarMenu.active {
+    left: 0;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.1);
+  }
+
+  #mainWindow {
+    margin-left: 0;
+    padding: 20px;
+  }
+  
+  #mainWindow article {
+    padding: 1.2rem;
+  }
+}
+
+/* =========================================
+   FIL D'ARIANE (BREADCRUMB)
+   ========================================= */
+.breadcrumb {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb span {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Le petit chevron entre les mots */
+.breadcrumb span:not(:last-child)::after {
+  content: "›"; 
+  margin: 0 10px;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.breadcrumb .current {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* =========================================
+   BOUTON RETOUR EN HAUT
+   ========================================= */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  
+  /* Masqué par défaut */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Classe ajoutée par JS quand on scrolle */
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#scrollTopBtn:hover {
+  background-color: #c73500; /* Orange plus foncé */
+  transform: translateY(-5px); /* Petit effet de lévitation */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Ajustement pour les mobiles */
+@media (max-width: 768px) {
+  #scrollTopBtn {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}
