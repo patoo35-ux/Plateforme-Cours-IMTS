@@ -1,7 +1,105 @@
+<header id="headerModule">
+  <h2 id="titreModuleCSS">Le CSS 3</h2>
+</header>
 
-<main>
-<h2 id="titreModuleCSS">Le CSS 3.0</h2>
+<section id="introCSS">
+  <h3>CSS | Cascading Style Sheets</h3>
+  
+  <p>
+    Le CSS (Cascading Style Sheets, ou Feuilles de style en cascade) est le langage utilisé pour <strong>mettre en forme</strong> un document HTML.
+  </p>
+  
+  <ul>
+    <li>Il sépare le fond (le HTML) de la forme (le design).</li>
+    <li>Il permet de gérer les couleurs, les typographies, l'espacement et les mises en page.</li>
+    <li>Il permet d'adapter l'affichage pour les ordinateurs, tablettes et mobiles (Responsive Design).</li>
+  </ul>
+</section>
 
-    <section id="variables">
-    </section>
+<section id="variablesCss">
+  <h3>CSS : Les Variables</h3>
 
+  <article>
+    <h4>📙 Qu'est-ce qu'une variable CSS ?</h4>
+    
+    <p>
+      Aussi appelées <strong>Custom Properties</strong> (propriétés personnalisées), les variables CSS permettent de stocker une valeur spécifique (comme un code couleur, une taille de police, ou un espacement) pour la réutiliser facilement partout dans ton fichier de style.
+    </p>
+
+    <p>
+      <strong>Pourquoi les utiliser ?</strong><br>
+      Imaginons que la couleur principale de ton site (un bleu spécifique) soit utilisée à 50 endroits différents dans ton CSS. Si ton client te demande de changer ce bleu pour du vert, sans variable, tu devrais modifier les 50 lignes manuellement. Avec les variables, tu ne le changes qu'<strong>une seule fois</strong> au début de ton fichier !
+    </p>
+  </article>
+
+  <article>
+    <h4>📙 Comment déclarer une variable globale ?</h4>
+    
+    <p>
+      On déclare généralement les variables globales dans la pseudo-classe <code>:root</code>, qui représente la racine absolue du document (la balise <code>&lt;html&gt;</code>).
+    </p>
+
+    <ul>
+      <li>Le nom d'une variable CSS doit <strong>toujours</strong> commencer par deux tirets <code>--</code>.</li>
+      <li>On respecte souvent la casse minuscule avec des tirets (kebab-case).</li>
+    </ul>
+
+    <pre>
+/* Déclaration des variables tout en haut du fichier CSS */
+:root {
+  --couleur-primaire: #1e3a5f;
+  --couleur-accent: #e83e00;
+  --fond-gris: #f0f2f5;
+  --arrondi-bouton: 8px;
+}
+    </pre>
+  </article>
+
+  <article>
+    <h4>📙 Comment utiliser une variable ?</h4>
+    
+    <p>
+      Pour appliquer la valeur que tu as stockée, tu dois utiliser la fonction CSS <code>var()</code> en mettant le nom de ta variable entre les parenthèses.
+    </p>
+
+    <details style="border-left-color: #e83e00;">
+      <summary style="color: #e83e00;">⚠️ Ne pas confondre avec le "var" de JavaScript !</summary>
+      <p>
+        En JavaScript, il est recommandé de ne plus utiliser <code>var</code> pour créer des variables (on préfère <code>let</code> et <code>const</code>). 
+        Cependant, <strong>en CSS, la fonction <code>var()</code> est obligatoire et totalement standard !</strong> Elle signifie simplement "lis la valeur de cette propriété". Il n'y a aucun problème à l'utiliser.
+      </p>
+    </details>
+
+    <pre>
+/* Utilisation des variables dans le reste du code */
+h1 {
+  color: var(--couleur-accent);
+}
+
+button {
+  background-color: var(--couleur-primaire);
+  border-radius: var(--arrondi-bouton);
+  color: white;
+  padding: 10px 20px;
+}
+
+body {
+  background-color: var(--fond-gris);
+}
+    </pre>
+  </article>
+
+  <details>
+    <summary>Astuce de pro : Les valeurs de secours (Fallback)</summary>
+    <p>
+      La fonction <code>var()</code> permet de définir une deuxième valeur, séparée par une virgule. Cette valeur sera utilisée si la variable principale est introuvable ou mal écrite. C'est une excellente sécurité.
+    </p>
+    <pre>
+.texte {
+  /* Si --couleur-texte n'existe pas, le texte sera noir */
+  color: var(--couleur-texte, black); 
+}
+    </pre>
+  </details>
+
+</section>
