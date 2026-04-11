@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/modulesStyles.css">
+  <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+  <header id="headerModule">
+    <h2 id="titreModuleHTML">Le HTML 5.0</h2>
+  </header>
+
+    <section id="structureDocHtml">
+      <h3>HTML | La Structure d'un document HTML</h3>
+
+        <article id="desBoitesDansDesBoites">
+          <h4>📙 HTML = des boîtes qui contiennent d’autres boîtes</h4>
+
+            <p>
+            Imaginons que chaque balise HTML est une boîte.  
+            Certaines boîtes peuvent en contenir d’autres, comme des poupées russes.<br>
+            Voici la structure générale :
+            </p>
+
+              <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Mon document HTML&lt;/title&gt;
+    &lt;link rel="stylesheet" href="./css/styles.css"&gt;
+    &lt;script src="./js/script.js" defer&gt;&lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    Le contenu principal de mon document HTML.
+  &lt;/body&gt;
+
+&lt;/html&gt;
+              </pre>
+
+              <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code> → indique que le document est en HTML5.</li>
+                <li><code>&lt;html&gt;</code> → la grande boîte qui contient tout.</li>
+                <li><code>&lt;head&gt;</code> → boîte invisible (réglages, titre, CSS…).</li>
+                <li><code>&lt;body&gt;</code> → boîte visible (tout ce que voit l’utilisateur).</li>
+                </ul>
+
+              <details>
+                <summary>Version ultra visuelle</summary>
+                <pre>
+&lt;!DOCTYPE html&gt;   ← Étiquette : “Ceci est un document HTML5”
+&lt;html&gt;            ← Grande boîte principale
+  &lt;head&gt;          ← Boîte invisible
+  &lt;/head&gt;
+  &lt;body&gt;          ← Boîte visible
+  &lt;/body&gt;
+&lt;/html&gt;
+                </pre>
+              </details>
+        </article>
+
+        <article id="principalesBoites">
+          <h4>📙 Les principales boîtes (balises) à connaître</h4>
+
+            <ol>
+              <li>Les boîtes de texte :</li>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><code>&lt;h1&gt; à &lt;h6&gt;</code></td>
+                      <td>→ titres (du plus important au moins important)</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;p&gt;</code></td>
+                      <td>→ paragraphe</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;span&gt;</code></td>
+                      <td>→ petit morceau de texte dans une phrase</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;strong&gt;</code></td>
+                      <td>→ texte important</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;em&gt;</code></td>
+                      <td>→ texte mis en avant (italique)</td>
+                    </tr>
+                  </tbody>
+                </table><br>
+
+              <li>Les boîtes de structure :</li>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><code>&lt;header&gt;</code></td>
+                      <td>→ en-tête</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;nav&gt;</code></td>
+                      <td>→ menu</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;main&gt;</code></td>
+                      <td>→ contenu principal</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;section&gt;</code></td>
+                      <td>→ grande section</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;article&gt;</code></td>
+                      <td>→ contenu indépendant</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;footer&gt;</code></td>
+                      <td>→ bas de page</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;div&gt;</code></td>
+                    <td>→ boîte neutre pour organiser</td>
+                    </tr>
+                  </tbody>
+                </table><br>
+
+              <li>Les boîtes de contenu :</li>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><code>&lt;img&gt;</code></td>
+                      <td>→ image</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;a&gt;</code></td>
+                      <td>→ lien</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;ul&gt; / &lt;ol&gt; / &lt;li&gt;</code></td>
+                      <td>→ listes</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;video&gt;</code></td>
+                      <td>→ vidéo</td>
+                    </tr>
+                    <tr>
+                      <td><code>&lt;form&gt;</code></td>
+                      <td>→ formulaire</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ol>
+        </article>
+
+        <article id="quandUtiliserBoites">
+          <h4>📙 Quand utiliser quelle boîte ?</h4>
+            <p>
+            Une règle simple : si le contenu a un sens précis, on utilise une balise sémantique.<br>
+            Exemples :
+            </p>
+
+              <table>
+                <tbody>
+                  <tr>
+                    <td>un menu</td>
+                    <td>→ <code>&lt;nav&gt;</code></td>
+                  </tr>
+                  <tr>
+                    <td>un article de blog</td>
+                    <td>→ <code>&lt;article&gt;</code></td>
+                  </tr>
+                  <tr>
+                    <td>une zone de contenu</td>
+                    <td>→ <code>&lt;section&gt;</code></td>
+                  </tr>
+                  <tr>
+                    <td>un pied de page</td>
+                    <td>→ <code>&lt;footer&gt;</code></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            <p>
+            Si on veut juste organiser visuellement, on utilise <code>&lt;div&gt;</code>.
+            </p>
+        </article>
+
+    </section>
+
+    <section id="balisesStructurantes">
+      <h3>HTML : Balises Structurantes</h3>
+
+        <p>
+        Les balises structurantes en HTML moderne servent à <strong>donner du sens</strong> à notre code :  
+        elles indiquent clairement quelles parties d’une page jouent quels rôles, ce qui 
+        <strong>améliore l’accessibilité, le référencement et la lisibilité</strong> du code.
+        </p>
+
+        <article>
+          <h4>📙 Une balise structurante décrit la fonction d’une zone de la page</h4>
+
+            <p>Par exemple :</p>
+
+              <table>
+                <tbody>
+                  <tr>
+                    <td><code>&lt;main&gt;</code></td>
+                    <td>= le contenu principal, unique sur la page</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;section&gt;</code></td>
+                    <td>= une partie thématique du contenu</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;article&gt;</code></td>
+                    <td>= un contenu autonome (post, article de blog…)</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;nav&gt;</code></td>
+                    <td>= une zone de navigation</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;footer&gt;</code></td>
+                    <td>= le bas de page (infos légales, liens…)</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+              <strong>⚠️ Important :</strong> on ne met pas des <code>&lt;div&gt;</code> partout.  
+              On choisit une balise qui explique le rôle de la zone.
+              </p>
+
+              <p>Ça aide :</p>
+                <ul>
+                  <li>les lecteurs d’écran</li>
+                  <li>les moteurs de recherche</li>
+                  <li>les développeurs qui lisent ton code</li>
+                  <li>toi-même</li>
+                </ul>
+          </article>
+
+      <details>
+      <summary>Liste des principales balises structurantes :</summary>
+        <table>
+          <tbody>
+            <tr>
+              <td><code>&lt;header&gt;</code></td>
+              <td>zone d'en-tête : logo, titre, navigation principale</td>
+            </tr>
+            <tr>
+              <td><code>&lt;nav&gt;</code></td>
+              <td>zone dédiée aux liens de navigation</td>
+            </tr>
+            <tr>
+              <td><code>&lt;main&gt;</code></td>
+              <td>contenu principal de la page (unique)</td>
+            </tr>
+            <tr>
+              <td><code>&lt;section&gt;</code></td>
+              <td>partie thématique du contenu</td>
+            </tr>
+            <tr>
+              <td><code>&lt;article&gt;</code></td>
+              <td>contenu autonome (post, fiche produit…)</td>
+            </tr>
+            <tr>
+              <td><code>&lt;aside&gt;</code></td>
+              <td>contenu secondaire (encadrés, pubs, infos connexes)</td>
+            </tr>
+            <tr>
+              <td><code>&lt;footer&gt;</code></td>
+              <td>pied de page : mentions légales, liens secondaires, copyright</td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+
+    </section>
+
+
+    <section id="balisesTextuelles">
+      <h3>HTML : Les balises textuelles</h3>
+        <p>
+        Les balises textuelles permettent de <strong>structurer le texte</strong> et de 
+        <strong>donner du sens aux mots</strong>, phrases et paragraphes.
+        Elles indiquent ce que représente un morceau de texte : un titre, un paragraphe, une citation,
+        un mot important, etc.<br>
+        Elles ne servent pas à la mise en forme (ça, c’est le rôle du CSS), mais à 
+        <strong>la sémantique</strong>.
+        </p>
+
+          <h4>Ça aide :</h4>
+            <ul>
+              <li>Les lecteurs d’écran comprennent mieux la page</li>
+              <li>Les moteurs de recherche savent ce qui est important</li>
+              <li>Le code est plus clair pour nous et les autres</li>
+              <li>Le style CSS devient plus facile à gérer</li>
+            </ul>
+
+      <article id="grandesCategoriesBalisesTextuelles">
+        <h4>📙 Les grandes catégories de balises textuelles</h4>
+          <ol>
+            <li>Titres
+              <ul>
+                <li><code>&lt;h1&gt;</code> à <code>&lt;h6&gt;</code> : titres hiérarchiques</li>
+                <li>Comme les titres et sous‑titres d’un livre.</li>
+              </ul>
+            </li><br>
+            <li>Paragraphes
+              <ul>
+            <li><code>&lt;p&gt;</code> : bloc de texte standard</li>
+              </ul>
+            </li><br>
+            <li> Mise en valeur sémantique
+              <ul>
+                <li><code>&lt;strong&gt;</code> : importance forte</li>
+                <li><code>&lt;em&gt;</code> : mise en avant, intonation</li>
+                <li><code>&lt;mark&gt;</code> : surlignage sémantique</li>
+                <li><code>&lt;small&gt;</code> : texte secondaire</li>
+                <li><code>&lt;abbr&gt;</code> : abréviation avec signification</li>
+                <li><code>&lt;cite&gt;</code> : titre d'œuvre</li>
+                <li><code>&lt;time&gt;</code> : date ou heure</li>
+              </ul>
+            </li><br>
+            <li>Citations
+              <ul>
+                <li><code>&lt;blockquote&gt;</code> : citation longue</li>
+                <li><code>&lt;q&gt;</code> : citation courte dans une phrase</li>
+              </ul>
+            </li><br>
+            <li>Listes
+              <ul>
+                <li><code>&lt;ul&gt;</code> : liste non ordonnée (liste à puces)</li>
+                <li><code>&lt;ol&gt;</code> : liste ordonnée (numérotée)</li>
+                <li><code>&lt;li&gt;</code> : élément de liste</li>
+              </ul>
+            </li><br>
+            <li>Texte technique
+              <ul>
+                <li><code>&lt;code&gt;</code> : code informatique</li>
+                <li><code>&lt;pre&gt;</code> : texte préformaté</li>
+                <li><code>&lt;kbd&gt;</code> : touche de clavier</li>
+                <li><code>&lt;samp&gt;</code> : sortie de programme</li>
+              </ul>
+            </li>
+          </ol>
+      </article>
+    </section>
+
+    <section id="balisesMutimedias">
+      <h3>HTML : Les balises multimédias</h3>
+        <p>
+        Les balises multimédias HTML servent à afficher des images, lire de l’audio, montrer des vidéos 
+        ou intégrer des contenus externes directement dans une page web.  
+        Elles enrichissent l’expérience utilisateur et sont aujourd’hui entièrement prises en charge 
+        par les navigateurs modernes.
+        </p>
+
+      <article>
+        <h4>📙 Pourquoi les balises multimédias existent ?</h4>
+          <p>
+          Elles permettent d’intégrer images, sons, vidéos et contenus interactifs sans plugin externe 
+          (Flash n’est plus utilisé).<br>
+          Elles rendent une page vivante, informative et accessible.
+          </p>
+      </article>
+
+      <article id="balisesPrincipalesMutimedias">
+        <h4>📙 Les principales balises multimédias HTML</h4>
+          <ul>
+            <li><code>&lt;img&gt;</code> → afficher une image
+              <ul>
+                <li>Affiche une image statique (photo, icône, illustration).</li>
+                <li>Attributs importants : <code>src</code>, <code>alt</code>, <code>width</code>, <code>height</code>.</li>
+              </ul>
+            </li><br>
+            <li><code>&lt;audio&gt;</code> → lire un son
+              <ul>
+                <li>Permet de lire un fichier audio (musique, voix, bruitage).</li>
+                <li>Peut afficher des contrôles : play, pause, volume.</li>
+                <li>Supporte plusieurs formats via <code>&lt;source&gt;</code>.</li>
+                  <details>
+                    <summary>Exemple :</summary>
+                      <pre>
+&lt;audio controls&gt;
+  &lt;source src="musique.mp3" type="audio/mpeg"&gt;
+  &lt;source src="musique.ogg" type="audio/ogg"&gt;
+&lt;/audio&gt;
+                      </pre>
+                  </details>
+              </ul>
+                </li><br>
+
+      <!-- FORMATS -->
+      <li>
+        Formats audio / vidéo recommandés
+        <ul>
+          <li>Vidéo recommandée : MP4 (format universel)</li>
+          <li>Audio recommandé : MP3 (musique compressée)</li>
+        </ul>
+      </li><br>
+
+      <!-- TRACK -->
+      <li>
+        <code>&lt;track&gt;</code> → sous-titres et descriptions
+        <ul>
+          <li>Ajoute des sous-titres, descriptions audio, traductions.</li>
+          <li>S’utilise à l’intérieur de <code>&lt;video&gt;</code>.</li>
+        </ul>
+      </li><br>
+
+      <!-- MAP -->
+      <li>
+        <code>&lt;map&gt;</code> + <code>&lt;area&gt;</code> → zones cliquables sur une image
+        <ul>
+          <li>Transforme une image en carte interactive.</li>
+        </ul>
+      </li><br>
+
+      <!-- OBJECT / EMBED -->
+      <li>
+        <code>&lt;object&gt;</code> et <code>&lt;embed&gt;</code> → contenus externes
+        <ul>
+          <li>Intègrent des PDF, animations, fichiers divers.</li>
+          <li><code>&lt;embed&gt;</code> est plus simple et direct.</li>
+        </ul>
+      </li>
+
+    </ul>
+
+  </article>
+
+    </section>
+
+<section id="baliseAncre">
+
+  <h3>HTML : balise <code>&lt;a&gt;</code> (lien hypertexte)</h3>
+
+  <p>
+    C’est la balise de navigation principale du web.  
+    Elle sert à créer un lien vers :
+  </p>
+
+  <ul>
+    <li>une autre page</li>
+    <li>un fichier</li>
+    <li>une ancre interne</li>
+    <li>un email</li>
+    <li>un numéro de téléphone</li>
+  </ul>
+
+  <p>
+    📌 Toutes les variantes de liens (internes, externes, ancres) utilisent la même balise 
+    <code>&lt;a&gt;</code>.  
+    Ce qui change, c’est le type d’URL dans l’attribut <code>href</code>.
+  </p>
+
+  <!-- LIENS EXTERNES -->
+  <article id="balisesLiensExternes">
+    <h4>📙 Les liens externes</h4>
+
+    <p>Ce sont des liens qui pointent vers un autre site, en dehors de ton domaine.</p>
+
+    <ul>
+      <li>Syntaxe :</li>
+    </ul>
+
+    <pre><code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</code></pre>
+
+    <ul>
+      <li>Caractéristiques :</li>
+      <ul>
+        <li>L’URL est absolue (commence par <code>https://</code>).</li>
+        <li>Souvent on ajoute :</li>
+      </ul>
+    </ul>
+
+    <pre><code>target="_blank" rel="noopener noreferrer"</code></pre>
+
+    <p>→ Pour ouvrir dans un nouvel onglet et améliorer la sécurité.</p>
+  </article>
+
+  <!-- LIENS INTERNES -->
+  <article id="balisesLiensInternes">
+    <h4>📙 Les liens internes</h4>
+
+    <p>
+      Ce sont des liens qui pointent vers une autre page du même site ou vers une section de la 
+      même page.
+    </p>
+
+    <ul>
+      <li>Lien interne vers une autre page du site :</li>
+    </ul>
+
+    <pre><code>&lt;a href="contact.html"&gt;Contact&lt;/a&gt;</code></pre>
+
+    <p>Ici, l’URL est relative (pas de <code>https://</code>).</p>
+
+    <ul>
+      <li>Lien interne vers une section de la même page (ancre) :</li>
+    </ul>
+
+    <ol>
+      <li>On place un <code>id</code> sur la cible :</li>
+    </ol>
+
+    <pre><code>&lt;h2 id="services"&gt;Nos services&lt;/h2&gt;</code></pre>
+
+    <ol start="2">
+      <li>On crée le lien :</li>
+    </ol>
+
+    <pre><code>&lt;a href="#services"&gt;Aller aux services&lt;/a&gt;</code></pre>
+
+    <ul>
+      <li>Lien interne vers une section d’une autre page :</li>
+    </ul>
+
+    <pre><code>&lt;a href="about.html#team"&gt;Notre équipe&lt;/a&gt;</code></pre>
+
+  </article>
+
+</section>
+
+<section id="balisesFonctionnelles">
+
+  <h3>HTML : Balises fonctionnelles</h3>
+
+  <p>
+    Les balises <code>&lt;link&gt;</code>, <code>&lt;script&gt;</code> et <code>&lt;style&gt;</code> 
+    ne sont pas des balises de contenu : ce sont des balises fonctionnelles placées dans le 
+    <code>&lt;head&gt;</code>.  
+    Elles servent à charger des ressources externes ou du code.  
+    Elles ne produisent rien à l’écran, mais indiquent au navigateur quoi charger et comment traiter la page.
+  </p>
+
+  <!-- LINK -->
+  <article id="baliseJSlink">
+    <h4>📙 <code>&lt;link&gt;</code> | Lien vers une ressource externe</h4>
+
+    <ul>
+      <li>Relie le document HTML à un fichier externe : CSS, icône, police, préchargement…</li>
+      <li>C’est une balise vide (pas de contenu).</li>
+      <li>Très utilisée pour charger le CSS.</li>
+    </ul>
+
+    <details>
+      <summary>Exemple</summary>
+      <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+    </details>
+
+    <p>
+      Type : balise de ressource externe (metadata).  
+      Elle définit une relation entre la page et un fichier.
+    </p>
+  </article>
+
+  <!-- SCRIPT -->
+  <article id="baliseJSscript">
+    <h4>📙 <code>&lt;script&gt;</code> | Balise de script</h4>
+
+    <ul>
+      <li>Intègre du JavaScript, soit directement, soit via un fichier externe.</li>
+      <li>Peut être placée dans <code>&lt;head&gt;</code> ou <code>&lt;body&gt;</code>.</li>
+      <li>Peut utiliser <code>src</code>, <code>async</code>, <code>defer</code>.</li>
+    </ul>
+
+    <details>
+      <summary>Exemple</summary>
+      <pre><code>&lt;script src="app.js" defer&gt;&lt;/script&gt;</code></pre>
+    </details>
+
+    <p>
+      Type : balise de script / exécution.  
+      Elle ajoute du comportement dynamique à la page.
+    </p>
+  </article>
+
+  <!-- STYLE -->
+  <article id="baliseJSstyle">
+    <h4>📙 <code>&lt;style&gt;</code> | Balise de style interne</h4>
+
+    <ul>
+      <li>Permet d’écrire du CSS directement dans la page.</li>
+      <li>Utilisée pour des styles rapides ou spécifiques.</li>
+    </ul>
+
+    <details>
+      <summary>Exemple</summary>
+      <pre><code>&lt;style&gt;body { background: lightblue; }&lt;/style&gt;</code></pre>
+    </details>
+
+    <p>
+      Type : balise de style interne (CSS).  
+      Elle contient du code CSS, pas du contenu visuel.
+    </p>
+  </article>
+
+</section>
+
+<article id="typesChampsFormulaire">
+
+  <h4>📙 Les types de champs les plus utilisés</h4>
+
+  <p>
+    Les types de champs HTML les plus utilisés en pratique couvrent 95% des besoins réels : 
+    texte, email, mot de passe, nombre, choix (checkbox/radio), fichier et bouton d’envoi.  
+    Ce sont ceux que l’on retrouve dans presque tous les formulaires modernes, car ils sont 
+    simples, fiables et bien supportés par tous les navigateurs.
+  </p>
+
+  <ol>
+
+    <!-- TEXT -->
+    <li><code>text</code> — Le champ universel
+      <ul>
+        <li>Sert à saisir du texte simple : nom, prénom, adresse…</li>
+        <li>C’est le type par défaut.</li>
+        <li>Le plus utilisé de tous.</li>
+      </ul>
+    </li><br>
+
+    <!-- PASSWORD -->
+    <li><code>password</code> — Mot de passe
+      <ul>
+        <li>Masque les caractères.</li>
+        <li>Utilisé dans tous les formulaires de connexion.</li>
+      </ul>
+    </li><br>
+
+    <!-- EMAIL -->
+    <li><code>email</code> — Adresse email
+      <ul>
+        <li>Vérifie automatiquement la forme d’un email.</li>
+        <li>Affiche un clavier optimisé sur mobile.</li>
+        <li>Très utilisé dans les formulaires d’inscription.</li>
+      </ul>
+    </li><br>
+
+    <!-- NUMBER -->
+    <li><code>number</code> — Nombre
+      <ul>
+        <li>Permet de saisir un nombre avec flèches.</li>
+        <li>Supporte <code>min</code>, <code>max</code>, <code>step</code>.</li>
+        <li>Très utilisé pour quantités, âges, prix.</li>
+      </ul>
+    </li><br>
+
+    <!-- CHECKBOX -->
+    <li><code>checkbox</code> — Choix multiples
+      <ul>
+        <li>Pour accepter des conditions, sélectionner plusieurs options.</li>
+        <li>Très utilisé pour préférences, filtres, options cumulables.</li>
+      </ul>
+    </li><br>
+
+    <!-- FILE -->
+    <li><code>file</code> — Import de fichier
+      <ul>
+        <li>Pour envoyer une image, un PDF, un document.</li>
+        <li>Très utilisé dans les formulaires administratifs ou RH.</li>
+      </ul>
+    </li><br>
+
+    <!-- TEXTAREA -->
+    <li><code>textarea</code> — Zone de texte longue
+      <ul>
+        <li>Pour saisir un message, un commentaire, une description.</li>
+        <li>Indispensable dans les formulaires de contact.</li>
+      </ul>
+    </li><br>
+
+    <!-- SUBMIT -->
+    <li><code>submit</code> — Bouton d’envoi
+      <ul>
+        <li>Déclenche l’envoi du formulaire.</li>
+        <li>Sans lui, rien ne part.</li>
+      </ul>
+    </li>
+
+  </ol>
+
+</article>
+
+<!-- TABLEAU RÉCAPITULATIF -->
+<details>
+  <summary>Tableau facile à mémoriser</summary>
+
+  <table class="tableauStyle">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Usage principal</th>
+        <th>Pourquoi il est très utilisé</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><strong>text</strong></td>
+        <td>Nom, prénom, adresse</td>
+        <td>Universel, flexible</td>
+      </tr>
+
+      <tr>
+        <td><strong>password</strong></td>
+        <td>Connexion</td>
+        <td>Sécurité visuelle</td>
+      </tr>
+
+      <tr>
+        <td><strong>email</strong></td>
+        <td>Inscription, contact</td>
+        <td>Validation automatique</td>
+      </tr>
+
+      <tr>
+        <td><strong>number</strong></td>
+        <td>Quantité, âge</td>
+        <td>Contrôles intégrés</td>
+      </tr>
+
+      <tr>
+        <td><strong>checkbox</strong></td>
+        <td>Choix multiples</td>
+        <td>Simple et intuitif</td>
+      </tr>
+
+      <tr>
+        <td><strong>radio</strong></td>
+        <td>Choix unique</td>
+        <td>Très clair pour l’utilisateur</td>
+      </tr>
+
+      <tr>
+        <td><strong>file</strong></td>
+        <td>Upload</td>
+        <td>Indispensable pour documents</td>
+      </tr>
+
+      <tr>
+        <td><strong>textarea</strong></td>
+        <td>Message long</td>
+        <td>Confort d’écriture</td>
+      </tr>
+
+      <tr>
+        <td><strong>submit</strong></td>
+        <td>Envoi</td>
+        <td>Nécessaire au fonctionnement</td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+
+</body>
+</html>

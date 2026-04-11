@@ -1,0 +1,269 @@
+/*        RESET GLOBAL       */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
+  background: #f8fafc;
+  color: #1e3a5f;
+  line-height: 1.6;
+}
+
+/*          HEADER           */
+header {
+  margin-left: 260px;
+  background: #1e3a5f;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+#menuToggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+/*          SIDEBAR          */
+#sideBarMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  overflow-y: auto;
+  background: #f5f7fa;
+  border-right: 2px solid #d0d7e1;
+  padding: 20px;
+  z-index: 1000;
+}
+
+#sideBarMenu img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+#sideBarMenu h3 {
+  text-align: center;
+  color: #1e3a5f;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+#sideBarMenu ul {
+  list-style: none;
+}
+
+/* Liens */
+#sideBarMenu a {
+  text-decoration: none;
+  color: #1e3a5f;
+  font-weight: bold;
+  padding: 6px 8px;
+  display: inline-block;
+  border-radius: 4px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+#sideBarMenu a:hover {
+  background: #dce6f5;
+  transform: translateX(4px);
+}
+
+/* Lien actif (scroll + clic) */
+#sideBarMenu a.scroll-active,
+.accordionContent a.active {
+  color: #0f2a45;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/*         ACCORDÉON         */
+.accordionBtn {
+  width: 100%;
+  background: #e8eef5;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1e3a5f;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease;
+}
+
+.accordionBtn:hover {
+  background: #dce6f5;
+}
+
+.accordionBtn.active {
+  background: #c9d8eb;
+  color: #0f2a45;
+}
+
+.picto {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+/* Chevron animé */
+.chevron {
+  margin-left: auto;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid #1e3a5f;
+  border-bottom: 2px solid #1e3a5f;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.accordionBtn.active .chevron {
+  transform: rotate(225deg);
+}
+
+/* Contenu accordéon */
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.2s ease;
+  margin-left: 15px;
+  border-left: 2px solid #c7d3e0;
+  padding-left: 12px;
+}
+
+.accordionContent.open {
+  max-height: 1500px;
+  padding-top: 10px;
+}
+
+.submenuTitle {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #1e3a5f;
+}
+
+/*      CONTENU PRINCIPAL    */
+#mainWindow {
+  margin-left: 260px;
+  padding: 20px;
+}
+
+/*           FOOTER          */
+footer {
+  margin-left: 260px;
+  background: #1e3a5f;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9rem;
+  padding: 20px;
+  position: sticky;
+}
+
+/*     STYLES PÉDAGOGIQUES   */
+
+/* Code */
+code {
+  background: #eef3fa;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #0f2a45;
+}
+
+/* Bloc de code */
+pre {
+  background: #eef3fa;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 10px 0;
+  border-left: 3px solid #1e3a5f;
+  font-size: 0.95rem;
+}
+
+/* Details */
+details {
+  margin: 12px 0;
+  padding: 10px;
+  background: #f0f4fa;
+  border-radius: 6px;
+  border-left: 3px solid #1e3a5f;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #1e3a5f;
+}
+
+/* Tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+
+table td,
+table th {
+  padding: 8px;
+  border-bottom: 1px solid #d0d7e1;
+}
+
+table th {
+  background: #e8eef5;
+  color: #1e3a5f;
+  font-weight: bold;
+}
+
+
+/*         RESPONSIVE        */
+@media (max-width: 768px) {
+
+  header footer{
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #menuToggle {
+    display: block;
+  }
+
+  #sideBarMenu {
+    left: -260px;
+    transition: left 0.3s ease;
+  }
+
+  #sideBarMenu.active {
+    left: 0;
+  }
+
+  #mainWindow {
+    margin-left: 0;
+  }
+}

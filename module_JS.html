@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="./js/script.js" defer></script>
+</head>
+
+<h2 id="titreModuleJS">Le JavaScript 6.0</h2>
+
+<!-- 1. INTRODUCTION -->
+<section id="jsIntroduction">
+
+  <h3>JavaScript | Introduction</h3>
+
+  <p>
+    Le JavaScript (JS) est un langage de programmation exécuté par le moteur JS du navigateur.  
+    Il permet par exemple :
+  </p>
+
+  <ul>
+    <li>d'afficher un message lorsqu’on clique sur un élément</li>
+    <li>de faire apparaître ou disparaître des éléments</li>
+    <li>de vérifier un formulaire</li>
+    <li>de créer des animations</li>
+    <li>de charger du contenu sans recharger la page</li>
+  </ul>
+
+  <p>
+    <strong>JavaScript est le langage qui donne le comportement à une page web.</strong>
+  </p>
+
+</section>
+
+<!-- 2. FONCTIONNEMENT -->
+<section id="fonctionnement">
+
+  <h3>JavaScript | Le fonctionnement</h3>
+
+  <p>
+    Quand on ouvre une page web, le navigateur charge trois types de fichiers :
+  </p>
+
+  <ul>
+    <li><strong>HTML</strong> — la structure</li>
+    <li><strong>CSS</strong> — l’apparence</li>
+    <li><strong>JavaScript</strong> — le comportement</li>
+  </ul>
+
+  <p>
+    JS est exécuté par le moteur JavaScript intégré au navigateur (comme <strong>V8</strong> dans Chrome).  
+    Le moteur lit le code et l’exécute pour modifier la page, réagir aux clics, charger des données, etc.
+  </p>
+
+  <p>
+    JS peut être ajouté de deux façons :
+  </p>
+
+  <ul>
+    <li>directement dans le HTML avec la balise <code>&lt;script&gt;</code></li>
+    <li>dans un fichier externe, par exemple <code>script.js</code> :</li>
+  </ul>
+
+  <pre><code>&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+
+  <p>
+    L’attribut <code>defer</code> indique au navigateur d’attendre que le HTML soit chargé avant d’exécuter le script.
+  </p>
+
+  <p>
+    <span class="bonnePratique">| BONNE PRATIQUE |</span>  
+    Vérifier que le script est bien lié au document HTML en plaçant un <code>alert()</code> temporaire dans <code>script.js</code>.
+  </p>
+
+  <details>
+    <summary><code>alert()</code></summary>
+    <p>
+      Lors du chargement de la page, une fenêtre pop‑up s’affiche, confirmant que le script est bien chargé.  
+      Ensuite, commenter l’instruction :
+    </p>
+    <pre><code>// alert()</code></pre>
+  </details>
+
+</section>
+
+<!-- 3. VARIABLES -->
+<section id="variablesJs">
+
+  <h3>JavaScript | Les variables</h3>
+
+  <article id="definitionVariable">
+    <h4>📙 Qu’est‑ce qu’une variable ?</h4>
+
+    <p>
+      On peut imaginer une variable comme une boîte dans laquelle on range une information.  
+      Cette boîte possède :
+    </p>
+
+    <ul>
+      <li>un <strong>nom</strong> pour la retrouver</li>
+      <li>un <strong>contenu</strong> (la valeur stockée)</li>
+    </ul>
+
+    <p>
+      En JavaScript, une variable sert à <strong>stocker</strong> une information pour la réutiliser plus tard.
+    </p>
+
+    <p class="aRetenir">
+      Les variables permettent de garder en mémoire une valeur utilisée lors de l’exécution du script.
+    </p>
+  </article>
+
+  <article id="creerVariablesJs">
+    <h4>📙 Comment créer une variable ?</h4>
+
+    <p>On déclare une variable :</p>
+
+    <ul>
+      <li>avec les mots‑clés <code>let</code> ou <code>const</code></li>
+      <li>en lui donnant un nom : <code>maVariable</code></li>
+      <li>en lui assignant une valeur avec <kbd>=</kbd></li>
+      <li>en terminant par un point‑virgule <kbd>;</kbd> (optionnel mais recommandé)</li>
+    </ul>
+
+    <pre><code>const maVariable = 1;
+let age = 25;</code></pre>
+
+    <ul>
+      <li><code>let</code> → valeur modifiable :</li>
+    </ul>
+
+    <pre><code>let age = 25;
+age = 26; // OK</code></pre>
+
+    <ul>
+      <li><code>const</code> → valeur verrouillée :</li>
+    </ul>
+
+    <pre><code>const pays = "France";
+pays = "Italie"; // ❌ erreur</code></pre>
+
+    <p class="aRetenir">
+      On utilise <code>const</code> pour les valeurs qui ne doivent pas changer,  
+      et <code>let</code> pour celles qui peuvent évoluer.
+    </p>
+
+    <p>
+      <code>var</code> existe encore dans les anciens codes, mais n’est plus recommandé.
+    </p>
+
+    <p>
+      Pour afficher une variable, on utilise la console du navigateur :
+    </p>
+
+    <ul>
+      <li>en tapant directement : <code>maVariable</code></li>
+      <li>ou avec <code>console.log()</code> :</li>
+    </ul>
+
+    <pre><code>console.log(maVariable);</code></pre>
+
+    <p>
+      Pour modifier une variable :
+    </p>
+
+    <pre><code>maVariable = 2;
+console.log(maVariable); // 2</code></pre>
+
+  </article>
+
+  <article id="utiliserVariablesJs">
+    <h4>📙 Comment utiliser les variables ?</h4>
+
+    <p>Les variables permettent de :</p>
+
+    <ul>
+      <li>éviter les répétitions</li>
+      <li>rendre le code plus clair</li>
+      <li>stocker des données dynamiques</li>
+      <li>faire des programmes adaptatifs</li>
+    </ul>
+
+    <p class="aRetenir">
+      Toujours donner un nom explicite à ses variables.
+    </p>
+
+    <details>
+      <summary>Exemple</summary>
+      <table>
+        <tbody>
+          <tr><td><code>ageUtilisateur</code></td><td>✔️ clair</td></tr>
+          <tr><td><code>xyz</code></td><td>❌ trop vague</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+<article id="conventionCamelCase">
+  <h4>Convention : le camelCase</h4>
+
+  <p>
+    <span class="convention">| CONVENTION |</span>
+    <strong>Syntaxe camelCase :</strong> une majuscule sépare les mots à partir du deuxième.  
+    Les espaces ne sont pas autorisés.
+  </p>
+
+  <p>Exemple : <code>scoreDesJoueurs</code></p>
+
+  <details>
+    <summary>Exemple</summary>
+
+    <pre>
+let message = "Bienvenue !";
+console.log(message);
+    </pre>
+
+    <p>JavaScript :</p>
+
+    <ol>
+      <li>crée une variable appelée <code>message</code></li>
+      <li>met <code>"Bienvenue !"</code> dedans</li>
+      <li>affiche son contenu avec <code>console.log(message)</code></li>
+    </ol>
+  </details>
+
+</article>
+
+<!-- 4. MÉMOIRE -->
+<article id="memoireVariablesJs">
+
+  <h4>📙 Comment JavaScript gère la mémoire (en bref) ?</h4>
+
+  <p>
+    JavaScript gère la mémoire automatiquement grâce à un système appelé 
+    <code>garbage collector</code>, qui alloue, utilise puis libère la mémoire sans intervention du développeur.
+  </p>
+
+  <details>
+    <summary>Le cycle de la mémoire en JavaScript</summary>
+
+    <p>JS suit toujours trois étapes :</p>
+
+    <ol>
+      <li>allouer la mémoire quand on crée une variable</li>
+      <li>utiliser la mémoire quand le code s’exécute</li>
+      <li>libérer la mémoire automatiquement quand elle n’est plus nécessaire, grâce au <code>garbage collector</code></li>
+    </ol>
+
+  </details>
+
+</article>
+
+</section>
+
+<!-- 5. TYPES DE VARIABLES -->
+
+<section id="typesVariablesJS">
+
+  <h3>JavaScript | Les Types de Variables</h3>
+
+  <!-- NUMBER -->
+  <article id="variableJSnumber">
+
+    <h4>📙 Les Nombres — <code>number</code></h4>
+
+    <table>
+      <tbody>
+        <tr><td>Entier</td><td><code>const a = 2;</code></td></tr>
+        <tr><td>Réel</td><td><code>const b = 3.14569;</code><br><span class="italique">(On utilise le point <kbd>.</kbd> pour la partie décimale)</span></td></tr>
+        <tr><td>Négatif</td><td><code>const c = -509;</code></td></tr>
+        <tr><td>Fraction</td><td><code>const d = 1/3;</code></td></tr>
+        <tr>
+          <td>Milliers</td>
+          <td>
+            <code>const e = 100_000;</code><br>
+            <span class="italique">(Le tiret bas <kbd>_</kbd> permet de séparer les milliers)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </article>
+
+  <!-- STRING -->
+  <article id="variableJSstring">
+
+    <h4>📙 Les Chaînes de Caractères — <code>string</code></h4>
+
+    <p>
+      Elles permettent de stocker des mots, phrases ou caractères.  
+      Une chaîne peut contenir lettres, chiffres, symboles, mais ne peut pas commencer par un chiffre.
+    </p>
+
+    <p>Les chaînes s’écrivent avec :</p>
+
+    <ul>
+      <li>guillemets simples <kbd>' '</kbd></li>
+      <li>guillemets doubles <kbd>" "</kbd></li>
+      <li>backticks <kbd>` `</kbd> (template strings)</li>
+    </ul>
+
+    <pre>
+const a = 'Salut les gens !';
+const b = "Salut les gens !";
+const c = `Salut les gens !`;
+    </pre>
+
+  </article>
+
+  <!-- BOOLEAN -->
+  <article id="variableJSboolean">
+
+    <h4>📙 Les Booléens — <code>boolean</code></h4>
+
+    <p>
+      Un booléen représente une information qui n’a que deux états possibles :
+    </p>
+
+    <ul>
+      <li><code>true</code> → vrai</li>
+      <li><code>false</code> → faux</li>
+    </ul>
+
+    <p>
+      C’est le type utilisé pour exprimer une condition, un état logique ou une réponse binaire.
+    </p>
+
+    <details>
+      <summary>Exemples</summary>
+      <ul>
+        <li>Utilisateur connecté ? → <code>true/false</code></li>
+        <li>Formulaire valide ? → <code>true/false</code></li>
+        <li>Bouton activé ? → <code>true/false</code></li>
+      </ul>
+    </details>
+
+    <h5>Comment déclarer un booléen ?</h5>
+
+    <pre>
+let estConnecte = true;
+let aFiniExercice = false;
+const vrai = true;
+const jeSuisFaux = false;
+    </pre>
+
+    <h5>À quoi servent les booléens ?</h5>
+
+    <p>Ils sont essentiels pour prendre des décisions :</p>
+
+    <pre>
+let estConnecte = true;
+
+if (estConnecte) {
+  console.log("Bienvenue !");
+} else {
+  console.log("Veuillez vous connecter.");
+}
+    </pre>
+
+    <p class="aRetenir">
+      Les booléens sont souvent le résultat d’une comparaison.  
+      Les opérateurs de comparaison renvoient toujours <code>true</code> ou <code>false</code>.
+    </p>
+
+  </article>
+
+  <!-- TRUTHY / FALSY -->
+  <details>
+    <summary>Les valeurs <code>truthy</code> et <code>falsy</code></summary>
+
+    <ul>
+      <li><strong>truthy</strong> : considérées comme vraies</li>
+      <ul>
+        <li>un nombre non nul</li>
+        <li>une chaîne non vide</li>
+        <li>un objet</li>
+        <li>un tableau</li>
+      </ul><br>
+
+      <li><strong>falsy</strong> : considérées comme fausses</li>
+      <ul>
+        <li><code>0</code></li>
+        <li><code>""</code> (chaîne vide)</li>
+        <li><code>null</code></li>
+        <li><code>undefined</code></li>
+        <li><code>NaN</code></li>
+        <li><code>false</code></li>
+      </ul>
+    </ul>
+
+    <p>Exemple :</p>
+
+    <pre>
+if ("Nolwenn") {
+  console.log("Ceci s'affiche");
+}
+// car "Nolwenn" est truthy
+    </pre>
+
+  </details>
+
+  <!-- ARRAY -->
+  <article id="variableTableau">
+
+    <h4>📙 Les Tableaux — <code>array</code></h4>
+
+    <p>
+      Un tableau est une variable spéciale qui permet de stocker plusieurs valeurs dans un seul contenant,
+      organisées dans un ordre précis.
+    </p>
+
+    <h5>Qu’est‑ce qu’un tableau ?</h5>
+
+    <p class="aRetenir">
+      Un tableau est une liste ordonnée de valeurs.  
+      Chaque valeur possède une position appelée <strong>index</strong>.
+    </p>
+
+    <details>
+      <summary>Exemple</summary>
+
+      <pre>
+let monTableau = ["bleu", "rouge", "vert", "jaune"];
+console.log(monTableau);
+
+// indexation :
+0 → "bleu"
+1 → "rouge"
+2 → "vert"
+3 → "jaune"
+      </pre>
+
+      <p>⚠️ En informatique, on compte à partir de 0.</p>
+
+    </details>
+
+  </article>
+
+  <!-- UTILITÉ DES TABLEAUX -->
+  <article>
+
+    <h4>Pourquoi utiliser un tableau ?</h4>
+
+    <p>Parce qu’il permet de :</p>
+
+    <ul>
+      <li>stocker plusieurs valeurs dans une seule variable</li>
+      <li>parcourir facilement une liste</li>
+      <li>ajouter, modifier ou supprimer des éléments</li>
+    </ul>
+
+    <details>
+      <summary>Exemple</summary>
+
+      <ul>
+        <li>Sans tableau :</li>
+      </ul>
+
+      <pre>
+let stagiaire1 = "Elisa";
+let stagiaire2 = "Benjamin";
+let stagiaire3 = "Patricia";
+      </pre>
+
+      <ul>
+        <li>Avec tableau :</li>
+      </ul>
+
+      <pre>
+let stagiaires = ["Elisa", "Benjamin", "Patricia"];
+      </pre>
+
+    </details>
+
+  </article>
+
+  <!-- CRÉER UN TABLEAU -->
+  <article>
+
+    <h4>Créer un tableau</h4>
+
+    <ul>
+      <li>Méthode avec crochets <kbd>[]</kbd></li>
+    </ul>
+
+    <pre><code>let couleurs = ["bleu", "rouge", "vert", "jaune"];</code></pre>
+
+    <ul>
+      <li>Tableau vide :</li>
+    </ul>
+
+    <pre><code>let couleurs = [];</code></pre>
+
+    <ul>
+      <li>Ajouter des éléments :</li>
+    </ul>
+
+    <pre>
+couleurs[0] = "bleu";
+couleurs[1] = "rouge";
+couleurs[2] = "vert";
+couleurs[3] = "jaune";
+    </pre>
+
+    <ul>
+      <li>Accéder aux éléments :</li>
+    </ul>
+
+    <pre>
+console.log(couleurs[0]); // bleu
+console.log(couleurs[2]); // vert
+    </pre>
+
+    <ul>
+      <li>Modifier un élément :</li>
+    </ul>
+
+    <pre>
+couleurs[3] = "orange";
+console.log(couleurs); // ["bleu", "rouge", "vert", "orange"]
+    </pre>
+
+  </article>
+
+</section>
+
+</html>
+    
