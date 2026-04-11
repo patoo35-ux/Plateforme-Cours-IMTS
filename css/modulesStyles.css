@@ -1,18 +1,1 @@
-#titreModuleHTML {
-    color: rgb(232, 62, 0);
-    text-align: center;
-}
 
-body {
-    background-color: rgba(227, 226, 226, 0.719);
-}
-
-article {
-    background-color:white;
-    padding: 1rem;
-}
-
-pre {
-    background-color: black;
-    color: azure;
-}
