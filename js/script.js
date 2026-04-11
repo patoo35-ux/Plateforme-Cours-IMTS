@@ -1,119 +1,161 @@
+/**
+ * GESTIONNAIRE GLOBAL
+ * Centralise l'accordéon, le chargement de modules et le ScrollSpy.
+ */
 
+let sectionsToWatch = [];
+
+// 1. CHARGEMENT INITIAL DU MENU
 fetch("./menu.html")
   .then(r => r.text())
   .then(html => {
-    document.getElementById("sideBarMenu").innerHTML = html;
+    const sidebar = document.getElementById("sideBarMenu");
+    if (sidebar) {
+      sidebar.innerHTML = html;
+      
+      initSidebarLogic(); // Gère les clics (Accordéon + Modules)
+      initMobileMenu();
+      initLinkHighlight();
+      
+      setupScrollSpyListener(); // Écouteur de scroll unique
+      refreshScrollSpySections(); // Scan initial des ancres
 
-    initAccordion();
-    initMobileMenu();
-    initModuleLoader();
-    initLinkHighlight();
-    initScrollSpy();
-  });
+      initScrollToTop(); //bouton Top Retour 
+    }
+  })
+  .catch(err => console.error("Erreur menu:", err));
 
-
-function initAccordion() {
+/**
+ * LOGIQUE SIDEBAR (Accordéon + Chargement)
+ */
+function initSidebarLogic() {
   const buttons = document.querySelectorAll(".accordionBtn");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
-      const content = btn.nextElementSibling;
+      // ... (Garde ta logique de fermeture d'accordéon ici) ...
 
-      // Fermer les autres
-      document.querySelectorAll(".accordionContent").forEach(c => {
-        if (c !== content) c.classList.remove("open");
-      });
-
-      document.querySelectorAll(".accordionBtn").forEach(b => {
-        if (b !== btn) b.classList.remove("active");
-      });
-
-      // Ouvrir celui-ci
-      content.classList.toggle("open");
+      // Basculer l'actuel
+      const allContents = btn.closest('.menuGroup').querySelectorAll(".accordionContent");
+      allContents.forEach(content => content.classList.toggle("open"));
       btn.classList.toggle("active");
+
+      // Chargement du module
+      const moduleName = btn.dataset.module;
+      const moduleTitle = btn.querySelector('span').innerText; // Récupère le texte "HTML 5", "CSS 3", etc.
+
+      if (moduleName) {
+        const fileMap = {
+          'HTML': './module_HTML.html',
+          'CSS': './module_CSS.html',
+          'JS': './module_JS.html'
+        };
+        if (fileMap[moduleName]) chargerModule(fileMap[moduleName], moduleTitle);
+      }
     });
   });
 }
 
-
-/*        MENU MOBILE        */
-function initMobileMenu() {
-  const toggle = document.getElementById("menuToggle");
-  const sidebar = document.getElementById("sideBarMenu");
-
-  if (!toggle) return;
-
-  toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("active");
-  });
-}
-
-
-/*   CHARGEMENT DES MODULES  */
-function initModuleLoader() {
-  document.querySelectorAll(".accordionBtn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const module = btn.dataset.module;
-
-      if (module === "HTML") chargerModule("./module_HTML.html");
-      if (module === "CSS") chargerModule("./module_CSS.html");
-      if (module === "JS") chargerModule("./module_JS.html");
-    });
-  });
-}
-
-function chargerModule(fichier) {
+/**
+ * CHARGEMENT DYNAMIQUE DU CONTENU AVEC FIL D'ARIANE
+ */
+function chargerModule(fichier, titreModule) {
   fetch(fichier)
     .then(r => r.text())
     .then(html => {
-      document.getElementById("mainWindow").innerHTML = html;
-
-      // Réactiver le scroll spy pour les ancres internes
-      initScrollSpy();
+      const main = document.getElementById("mainWindow");
+      if (main) {
+        // Création du fil d'Ariane
+        const breadcrumbHTML = `
+          <nav class="breadcrumb" aria-label="Chemin de navigation">
+            <span><a href="./index.html" style="text-decoration: none; color: inherit;">Accueil</a></span>
+            <span class="current">${titreModule}</span>
+          </nav>
+        `;
+        
+        // On injecte le fil d'Ariane + le contenu HTML du module
+        main.innerHTML = breadcrumbHTML + html;
+        window.scrollTo(0, 0);
+        
+        setTimeout(refreshScrollSpySections, 100);
+      }
     });
 }
-/*   SURBRILLANCE AU CLIC    */
-function initLinkHighlight() {
-  const links = document.querySelectorAll("#sidebarNav a");
-
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-      links.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-    });
-  });
-}
-
-/*   SURBRILLANCE AU SCROLL  */
-function initScrollSpy() {
-  const links = document.querySelectorAll("#sidebarNav a[href^='#']");
-  if (!links.length) return;
-
-  const sections = Array.from(links)
-    .map(link => {
-      const id = link.getAttribute("href").substring(1);
-      return document.getElementById(id);
-    })
-    .filter(Boolean);
-
+/**
+ * SCROLL SPY (Surbrillance automatique au défilement)
+ */
+function setupScrollSpyListener() {
   window.addEventListener("scroll", () => {
     let activeSection = null;
+    const scrollPos = window.scrollY + 150;
 
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 150 && rect.bottom >= 150) {
+    sectionsToWatch.forEach(section => {
+      if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
         activeSection = section;
       }
     });
 
-    links.forEach(link => link.classList.remove("scroll-active"));
+    const links = document.querySelectorAll("#sidebarNav a[href^='#']");
+    links.forEach(l => l.classList.remove("scroll-active"));
 
     if (activeSection) {
-      const activeLink = document.querySelector(
-        `#sidebarNav a[href="#${activeSection.id}"]`
-      );
-      if (activeLink) activeLink.classList.add("scroll-active");
+      const targetLink = document.querySelector(`#sidebarNav a[href="#${activeSection.id}"]`);
+      if (targetLink) targetLink.classList.add("scroll-active");
     }
   });
 }
 
+function refreshScrollSpySections() {
+  const links = document.querySelectorAll("#sidebarNav a[href^='#']");
+  sectionsToWatch = Array.from(links)
+    .map(link => document.getElementById(link.getAttribute("href").substring(1)))
+    .filter(Boolean);
+}
+
+/**
+ * UTILITAIRES (Mobile & Clics manuels)
+ */
+function initMobileMenu() {
+  const toggle = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sideBarMenu");
+  if (toggle) {
+    toggle.addEventListener("click", () => sidebar.classList.toggle("active"));
+  }
+}
+
+function initLinkHighlight() {
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#sidebarNav a")) {
+      document.querySelectorAll("#sidebarNav a").forEach(l => l.classList.remove("active"));
+      e.target.classList.add("active");
+      
+      // Fermer le menu mobile sur clic
+      document.getElementById("sideBarMenu").classList.remove("active");
+    }
+  });
+}
+
+/**
+ * BOUTON RETOUR EN HAUT
+ */
+function initScrollToTop() {
+  const btn = document.getElementById("scrollTopBtn");
+  if (!btn) return;
+
+  // Apparition du bouton après 300px de scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      btn.classList.add("show");
+    } else {
+      btn.classList.remove("show");
+    }
+  });
+
+  // Action au clic
+  btn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
