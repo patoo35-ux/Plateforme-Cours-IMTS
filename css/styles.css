@@ -1,269 +1,161 @@
-/*        RESET GLOBAL       */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/**
+ * GESTIONNAIRE GLOBAL
+ * Centralise l'accordéon, le chargement de modules et le ScrollSpy.
+ */
+
+let sectionsToWatch = [];
+
+// 1. CHARGEMENT INITIAL DU MENU
+fetch("./menu.html")
+  .then(r => r.text())
+  .then(html => {
+    const sidebar = document.getElementById("sideBarMenu");
+    if (sidebar) {
+      sidebar.innerHTML = html;
+      
+      initSidebarLogic(); // Gère les clics (Accordéon + Modules)
+      initMobileMenu();
+      initLinkHighlight();
+      
+      setupScrollSpyListener(); // Écouteur de scroll unique
+      refreshScrollSpySections(); // Scan initial des ancres
+
+      initScrollToTop(); //bouton Top Retour 
+    }
+  })
+  .catch(err => console.error("Erreur menu:", err));
+
+/**
+ * LOGIQUE SIDEBAR (Accordéon + Chargement)
+ */
+function initSidebarLogic() {
+  const buttons = document.querySelectorAll(".accordionBtn");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // ... (Garde ta logique de fermeture d'accordéon ici) ...
+
+      // Basculer l'actuel
+      const allContents = btn.closest('.menuGroup').querySelectorAll(".accordionContent");
+      allContents.forEach(content => content.classList.toggle("open"));
+      btn.classList.toggle("active");
+
+      // Chargement du module
+      const moduleName = btn.dataset.module;
+      const moduleTitle = btn.querySelector('span').innerText; // Récupère le texte "HTML 5", "CSS 3", etc.
+
+      if (moduleName) {
+        const fileMap = {
+          'HTML': './module_HTML.html',
+          'CSS': './module_CSS.html',
+          'JS': './module_JS.html'
+        };
+        if (fileMap[moduleName]) chargerModule(fileMap[moduleName], moduleTitle);
+      }
+    });
+  });
 }
 
-body {
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  overflow-x: hidden;
-  background: #f8fafc;
-  color: #1e3a5f;
-  line-height: 1.6;
+/**
+ * CHARGEMENT DYNAMIQUE DU CONTENU AVEC FIL D'ARIANE
+ */
+function chargerModule(fichier, titreModule) {
+  fetch(fichier)
+    .then(r => r.text())
+    .then(html => {
+      const main = document.getElementById("mainWindow");
+      if (main) {
+        // Création du fil d'Ariane
+        const breadcrumbHTML = `
+          <nav class="breadcrumb" aria-label="Chemin de navigation">
+            <span><a href="./index.html" style="text-decoration: none; color: inherit;">Accueil</a></span>
+            <span class="current">${titreModule}</span>
+          </nav>
+        `;
+        
+        // On injecte le fil d'Ariane + le contenu HTML du module
+        main.innerHTML = breadcrumbHTML + html;
+        window.scrollTo(0, 0);
+        
+        setTimeout(refreshScrollSpySections, 100);
+      }
+    });
+}
+/**
+ * SCROLL SPY (Surbrillance automatique au défilement)
+ */
+function setupScrollSpyListener() {
+  window.addEventListener("scroll", () => {
+    let activeSection = null;
+    const scrollPos = window.scrollY + 150;
+
+    sectionsToWatch.forEach(section => {
+      if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+        activeSection = section;
+      }
+    });
+
+    const links = document.querySelectorAll("#sidebarNav a[href^='#']");
+    links.forEach(l => l.classList.remove("scroll-active"));
+
+    if (activeSection) {
+      const targetLink = document.querySelector(`#sidebarNav a[href="#${activeSection.id}"]`);
+      if (targetLink) targetLink.classList.add("scroll-active");
+    }
+  });
 }
 
-/*          HEADER           */
-header {
-  margin-left: 260px;
-  background: #1e3a5f;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 900;
+function refreshScrollSpySections() {
+  const links = document.querySelectorAll("#sidebarNav a[href^='#']");
+  sectionsToWatch = Array.from(links)
+    .map(link => document.getElementById(link.getAttribute("href").substring(1)))
+    .filter(Boolean);
 }
 
-#menuToggle {
-  display: none;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  margin-right: 15px;
-}
-
-/*          SIDEBAR          */
-#sideBarMenu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 260px;
-  height: 100vh;
-  overflow-y: auto;
-  background: #f5f7fa;
-  border-right: 2px solid #d0d7e1;
-  padding: 20px;
-  z-index: 1000;
-}
-
-#sideBarMenu img {
-  width: 100%;
-  border-radius: 6px;
-  margin-bottom: 15px;
-}
-
-#sideBarMenu h3 {
-  text-align: center;
-  color: #1e3a5f;
-  margin-bottom: 20px;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-}
-
-#sideBarMenu ul {
-  list-style: none;
-}
-
-/* Liens */
-#sideBarMenu a {
-  text-decoration: none;
-  color: #1e3a5f;
-  font-weight: bold;
-  padding: 6px 8px;
-  display: inline-block;
-  border-radius: 4px;
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-
-#sideBarMenu a:hover {
-  background: #dce6f5;
-  transform: translateX(4px);
-}
-
-/* Lien actif (scroll + clic) */
-#sideBarMenu a.scroll-active,
-.accordionContent a.active {
-  color: #0f2a45;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-/*         ACCORDÉON         */
-.accordionBtn {
-  width: 100%;
-  background: #e8eef5;
-  border: none;
-  padding: 10px;
-  text-align: left;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #1e3a5f;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background 0.2s ease;
-}
-
-.accordionBtn:hover {
-  background: #dce6f5;
-}
-
-.accordionBtn.active {
-  background: #c9d8eb;
-  color: #0f2a45;
-}
-
-.picto {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  object-fit: contain;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-
-/* Chevron animé */
-.chevron {
-  margin-left: auto;
-  width: 12px;
-  height: 12px;
-  border-right: 2px solid #1e3a5f;
-  border-bottom: 2px solid #1e3a5f;
-  transform: rotate(45deg);
-  transition: transform 0.3s ease;
-}
-
-.accordionBtn.active .chevron {
-  transform: rotate(225deg);
-}
-
-/* Contenu accordéon */
-.accordionContent {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.2s ease;
-  margin-left: 15px;
-  border-left: 2px solid #c7d3e0;
-  padding-left: 12px;
-}
-
-.accordionContent.open {
-  max-height: 1500px;
-  padding-top: 10px;
-}
-
-.submenuTitle {
-  font-weight: bold;
-  margin-top: 10px;
-  color: #1e3a5f;
-}
-
-/*      CONTENU PRINCIPAL    */
-#mainWindow {
-  margin-left: 260px;
-  padding: 20px;
-}
-
-/*           FOOTER          */
-footer {
-  margin-left: 260px;
-  background: #1e3a5f;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 0.9rem;
-  padding: 20px;
-  position: sticky;
-}
-
-/*     STYLES PÉDAGOGIQUES   */
-
-/* Code */
-code {
-  background: #eef3fa;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  color: #0f2a45;
-}
-
-/* Bloc de code */
-pre {
-  background: #eef3fa;
-  padding: 12px;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin: 10px 0;
-  border-left: 3px solid #1e3a5f;
-  font-size: 0.95rem;
-}
-
-/* Details */
-details {
-  margin: 12px 0;
-  padding: 10px;
-  background: #f0f4fa;
-  border-radius: 6px;
-  border-left: 3px solid #1e3a5f;
-}
-
-details summary {
-  cursor: pointer;
-  font-weight: bold;
-  color: #1e3a5f;
-}
-
-/* Tableau */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-}
-
-table td,
-table th {
-  padding: 8px;
-  border-bottom: 1px solid #d0d7e1;
-}
-
-table th {
-  background: #e8eef5;
-  color: #1e3a5f;
-  font-weight: bold;
-}
-
-
-/*         RESPONSIVE        */
-@media (max-width: 768px) {
-
-  header footer{
-    margin-left: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/**
+ * UTILITAIRES (Mobile & Clics manuels)
+ */
+function initMobileMenu() {
+  const toggle = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sideBarMenu");
+  if (toggle) {
+    toggle.addEventListener("click", () => sidebar.classList.toggle("active"));
   }
+}
 
-  #menuToggle {
-    display: block;
-  }
+function initLinkHighlight() {
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#sidebarNav a")) {
+      document.querySelectorAll("#sidebarNav a").forEach(l => l.classList.remove("active"));
+      e.target.classList.add("active");
+      
+      // Fermer le menu mobile sur clic
+      document.getElementById("sideBarMenu").classList.remove("active");
+    }
+  });
+}
 
-  #sideBarMenu {
-    left: -260px;
-    transition: left 0.3s ease;
-  }
+/**
+ * BOUTON RETOUR EN HAUT
+ */
+function initScrollToTop() {
+  const btn = document.getElementById("scrollTopBtn");
+  if (!btn) return;
 
-  #sideBarMenu.active {
-    left: 0;
-  }
+  // Apparition du bouton après 300px de scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      btn.classList.add("show");
+    } else {
+      btn.classList.remove("show");
+    }
+  });
 
-  #mainWindow {
-    margin-left: 0;
-  }
+  // Action au clic
+  btn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
 }
