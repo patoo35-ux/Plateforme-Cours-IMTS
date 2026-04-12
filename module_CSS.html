@@ -6,100 +6,101 @@
   <h3>CSS | Cascading Style Sheets</h3>
   
   <p>
-    Le CSS (Cascading Style Sheets, ou Feuilles de style en cascade) est le langage utilisé pour <strong>mettre en forme</strong> un document HTML.
+    Si le HTML est le squelette d'une page web (sa structure), le CSS (Cascading Style Sheets) représente son apparence et 
+    sa disposition. Son rôle unique est de dire au navigateur comment afficher les éléments. Pour un cerveau qui aime la 
+    logique et la catégorisation, l'immense liste des propriétés CSS peut sembler chaotique. En réalité, tout repose sur 
+    trois grands piliers indispensables :
   </p>
   
-  <ul>
-    <li>Il sépare le fond (le HTML) de la forme (le design).</li>
-    <li>Il permet de gérer les couleurs, les typographies, l'espacement et les mises en page.</li>
-    <li>Il permet d'adapter l'affichage pour les ordinateurs, tablettes et mobiles (Responsive Design).</li>
-  </ul>
+  <ol>
+    <li><strong>Les Sélecteurs : C'est le système de ciblage.</strong> Il faut savoir comment pointer exactement le bon élément 
+      HTML (un bouton spécifique, tous les paragraphes d'une section) pour le modifier, sans affecter le reste de la page.</li>
+    <li><strong>Le Modèle de Boîte (Box Model) : C'est la physique du CSS.</strong> Absolument chaque élément sur la page est une 
+      boîte rectangulaire invisible. Comprendre comment l'espace fonctionne à l'intérieur et à l'extérieur de cette boîte (marges, 
+      bordures, remplissage) est crucial pour éviter que les éléments ne se chevauchent.</li>
+    <li><strong>La Mise en Page (Layout) : C'est l'architecture.</strong> Une fois qu'on a nos boîtes, il faut savoir comment les 
+      aligner, les centrer ou les mettre en colonnes. Cela passe principalement par la maîtrise d'un outil intégré appelé Flexbox.</li>
+  </ol>
 </section>
 
-<section id="variablesCss">
-  <h3>CSS : Les Variables</h3>
+<section id="sélecteursCss">
+  <h3>CSS : Les Sélecteurs</h3>
+
+  <p>
+    Les sélecteurs fonctionnent exactement comme un système de requêtes dans une base de données : on définit des critères pour cibler 
+    très exactement ce que l'on veut modifier sans toucher au reste.
+  </p>
 
   <article>
-    <h4>📙 Qu'est-ce qu'une variable CSS ?</h4>
+    <h4>📙 Les types de sélecteurs</h4>
     
-    <p>
-      Aussi appelées <strong>Custom Properties</strong> (propriétés personnalisées), les variables CSS permettent de stocker une valeur spécifique (comme un code couleur, une taille de police, ou un espacement) pour la réutiliser facilement partout dans ton fichier de style.
-    </p>
-
-    <p>
-      <strong>Pourquoi les utiliser ?</strong><br>
-      Imaginons que la couleur principale de ton site (un bleu spécifique) soit utilisée à 50 endroits différents dans ton CSS. Si ton client te demande de changer ce bleu pour du vert, sans variable, tu devrais modifier les 50 lignes manuellement. Avec les variables, tu ne le changes qu'<strong>une seule fois</strong> au début de ton fichier !
-    </p>
-  </article>
-
-  <article>
-    <h4>📙 Comment déclarer une variable globale ?</h4>
-    
-    <p>
-      On déclare généralement les variables globales dans la pseudo-classe <code>:root</code>, qui représente la racine absolue du document (la balise <code>&lt;html&gt;</code>).
-    </p>
-
-    <ul>
-      <li>Le nom d'une variable CSS doit <strong>toujours</strong> commencer par deux tirets <code>--</code>.</li>
-      <li>On respecte souvent la casse minuscule avec des tirets (kebab-case).</li>
+    <ul>Il existe trois niveaux de ciblage fondamentaux à maîtriser absolument, du plus général au plus spécifique :
+      <li><strong>Le Sélecteur de Balise (La catégorie) :</strong> Il cible tous les éléments HTML d'un même type sur la page.
+        <ul>
+          <li>Exemple : <code>p { color: blue; }</code> modifiera le texte de tous les paragraphes.</li>
+          <li>Logique : "Applique ceci à toutes les voitures."</li>
+        </ul>
+      </li>
+      <li><strong>Le Sélecteur de Classe (Le groupe) :</strong>  Il cible un groupe d'éléments spécifiques auxquels on a donné un nom de classe, peu 
+        importe leur balise HTML. Il s'écrit toujours avec un point (.) devant.
+        <ul>
+          <li>Exemple : <code>.texte-important { font-weight: bold; }</code></li>
+          <li>Logique : "Applique ceci à toutes les voitures de sport." (On peux classer plusieurs éléments différents dans ce groupe).</li>
+        </ul>
+      </li>
+      <li><strong>Le Sélecteur d'Identifiant (L'élément unique) :</strong> Il cible un et un seul élément bien précis sur toute la page. Il s'écrit avec un 
+      hashtag (#) devant.
+        <ul>
+          <li>Exemple : <code>#en-tete-principal { background: black; }</code></li>
+          <li>Logique : "Applique ceci à la voiture qui a cette plaque d'immatriculation précise." (Cet ID ne peut être utilisé qu'une seule 
+            fois dans ton HTML).</li>
+        </ul>
+      </li>
     </ul>
-
-    <pre>
-/* Déclaration des variables tout en haut du fichier CSS */
-:root {
-  --couleur-primaire: #1e3a5f;
-  --couleur-accent: #e83e00;
-  --fond-gris: #f0f2f5;
-  --arrondi-bouton: 8px;
-}
-    </pre>
   </article>
 
   <article>
-    <h4>📙 Comment utiliser une variable ?</h4>
+    <h4>📙 Le Modèle de Boite</h4>
     
     <p>
-      Pour appliquer la valeur que tu as stockée, tu dois utiliser la fonction CSS <code>var()</code> en mettant le nom de ta variable entre les parenthèses.
+     Il faut intégrer cette règle physique absolue en CSS : absolument chaque élément est une boîte rectangulaire. Même un texte qui semble avoir une forme 
+     complexe ou un simple lien, le navigateur le calcule comme un rectangle délimité.
     </p>
 
-    <details style="border-left-color: #e83e00;">
-      <summary style="color: #e83e00;">⚠️ Ne pas confondre avec le "var" de JavaScript !</summary>
-      <p>
-        En JavaScript, il est recommandé de ne plus utiliser <code>var</code> pour créer des variables (on préfère <code>let</code> et <code>const</code>). 
-        Cependant, <strong>en CSS, la fonction <code>var()</code> est obligatoire et totalement standard !</strong> Elle signifie simplement "lis la valeur de cette propriété". Il n'y a aucun problème à l'utiliser.
-      </p>
-    </details>
+    <ol>Cette boîte est composée de son contenu au centre, entouré de trois couches d'espace que tu peux manipuler :
+      <li>Le <strong>Padding </strong>(l'espace interne de la boite). Le padding crée l'espace à l'intérieur de la bordure, ce qui permet au texte de respirer 
+        sans agrandir l'objet lui-même.</li>
+      <li>La <strong>Border</strong> (la bordure, qui peut être visible ou invisible)</li>
+      <li>La <strong>Margin</strong> (la marge ewterne, la distance pour repousser les autres éléments de la page)</li>
+    </ol>
 
-    <pre>
-/* Utilisation des variables dans le reste du code */
-h1 {
-  color: var(--couleur-accent);
-}
-
-button {
-  background-color: var(--couleur-primaire);
-  border-radius: var(--arrondi-bouton);
-  color: white;
-  padding: 10px 20px;
-}
-
-body {
-  background-color: var(--fond-gris);
-}
-    </pre>
   </article>
 
-  <details>
-    <summary>Astuce de pro : Les valeurs de secours (Fallback)</summary>
+  <article>
+    <h4>📙 La Mise en Page</h4>
+    
     <p>
-      La fonction <code>var()</code> permet de définir une deuxième valeur, séparée par une virgule. Cette valeur sera utilisée si la variable principale est introuvable ou mal écrite. C'est une excellente sécurité.
+      L'outil incontournable pour structurer et aligner des éléments s'appelle <strong>Flexbox.</strong><br>
+      L'idée de base est très logique : on prend un élément parent (un grand conteneur) et on lui donnes le pouvoir 
+      de distribuer intelligemment l'espace entre ses enfants (les éléments situés à l'intérieur).
     </p>
-    <pre>
-.texte {
-  /* Si --couleur-texte n'existe pas, le texte sera noir */
-  color: var(--couleur-texte, black); 
-}
-    </pre>
-  </details>
+
+    <p>
+      Imaginons un conteneur qui regroupe trois petits blocs. Par défaut, le navigateur les place de façon très basique. 
+      Pour débloquer les capacités de Flexbox (comme, par exemple, les centrer parfaitement sur un axe ou les espacer uniformément), 
+      il faut déclencher ce mode sur le conteneur parent.<br>
+      la valeur pour activer ce mode est <code>flex</code>. La règle exacte à appliquer au conteneur parent est donc <code>display: flex;</code>.
+      Une fois le mode Flexbox activé, les éléments enfants se placent par défaut en ligne au début du conteneur (sur l'axe horizontal). C'est 
+      à ce moment-là que l'on utilise des propriétés spécifiques pour dicter leur position.
+    </p>
+
+    <détails>
+      <summary>Quelle serait la règle complète pour que nos petits blocs se placent parfaitement au centre ?</summary>
+        <code>display: justify-center;</code>>
+    </details>
+  
+  </article>
+
+  
 
 </section>
