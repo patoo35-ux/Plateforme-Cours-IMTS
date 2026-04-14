@@ -6,10 +6,8 @@
   <h3>CSS | Cascading Style Sheets</h3>
   
   <p>
-    Si le HTML est le squelette d'une page web (sa structure), le CSS (Cascading Style Sheets) représente son apparence et 
-    sa disposition. Son rôle unique est de dire au navigateur comment afficher les éléments. Pour un cerveau qui aime la 
-    logique et la catégorisation, l'immense liste des propriétés CSS peut sembler chaotique. En réalité, tout repose sur 
-    trois grands piliers indispensables :
+    Si le HTML est le squelette d'une page web (sa structure), le CSS (Cascading Style Sheets) est le langage qui permet de 
+    donner du style à une page web. C'est lui qui transforme une structure brute en une interface agréable à regarder.
   </p>
   
   <ol>
@@ -23,84 +21,809 @@
   </ol>
 </section>
 
-<section id="sélecteursCss">
-  <h3>CSS : Les Sélecteurs</h3>
+<section id="structureSyntaxeCss">
+  <h3>CSS | Structure & Syntaxe</h3>
+    <article id="anatomieRègleCss">
+      <h4>📙 Anatomie d'une règle CSS</h4>
+      <p>
+        Une règle CSS est un peu comme une phrase qui donne un ordre au navigateur pour changer l'apparence d'un élément précis. 
+        On peut décomposer une règle en trois parties principales :
+      </p>
 
-  <p>
-    Les sélecteurs fonctionnent exactement comme un système de requêtes dans une base de données : on définit des critères pour cibler 
-    très exactement ce que l'on veut modifier sans toucher au reste.
-  </p>
+        <ul>
+          <li><strong>Le Sélecteur :</strong> C'est le "qui". Il indique quel élément HTML tu veux modifier (par exemple : tous 
+            les titres <code>h1</code>, ou tous les paragraphes <code>p</code>).</li>
+        <li><strong>La Propriété :</strong> C'est le "quoi". C'est l'aspect que tu veux changer (la couleur, la taille de la police, 
+          la largeur, etc.).</li>
+        <li><trong>La Valeur :</trong>C'est le "combien" ou "comment". C'est le réglage spécifique que tu appliques à la propriété 
+          (par exemple : <code>red, 20px, center</code>).</li>
+        </ul>
 
-  <article>
-    <h4>📙 Les types de sélecteurs</h4>
-    
-    <ul>Il existe trois niveaux de ciblage fondamentaux à maîtriser absolument, du plus général au plus spécifique :
-      <li><strong>Le Sélecteur de Balise (La catégorie) :</strong> Il cible tous les éléments HTML d'un même type sur la page.
-        <ul>
-          <li>Exemple : <code>p { color: blue; }</code> modifiera le texte de tous les paragraphes.</li>
-          <li>Logique : "Applique ceci à toutes les voitures."</li>
-        </ul>
-      </li>
-      <li><strong>Le Sélecteur de Classe (Le groupe) :</strong>  Il cible un groupe d'éléments spécifiques auxquels on a donné un nom de classe, peu 
-        importe leur balise HTML. Il s'écrit toujours avec un point (.) devant.
-        <ul>
-          <li>Exemple : <code>.texte-important { font-weight: bold; }</code></li>
-          <li>Logique : "Applique ceci à toutes les voitures de sport." (On peux classer plusieurs éléments différents dans ce groupe).</li>
-        </ul>
-      </li>
-      <li><strong>Le Sélecteur d'Identifiant (L'élément unique) :</strong> Il cible un et un seul élément bien précis sur toute la page. Il s'écrit avec un 
-      hashtag (#) devant.
-        <ul>
-          <li>Exemple : <code>#en-tete-principal { background: black; }</code></li>
-          <li>Logique : "Applique ceci à la voiture qui a cette plaque d'immatriculation précise." (Cet ID ne peut être utilisé qu'une seule 
-            fois dans ton HTML).</li>
-        </ul>
-      </li>
-    </ul>
-  </article>
+        <pre>
+              h1 { 
+                color : blue;
+              }
+        </pre>
 
-  <article>
-    <h4>📙 Le Modèle de Boite</h4>
-    
+        <ul>
+          <li><code>h1</code> est le sélecteur : il cible l'élément HTML (le titre de niveau 1).</li>
+          <li><code>color</code>est la propriété : c'est l'aspect technique que l'on veut modifier (la couleur du texte).</li>
+          <li><code>blue</code> est la valeur</li> : c'est le réglage que l'on veut donner (texte de couleur bleue);
+        </ul>
+
+        <pre>
+              p {
+                font-size : 16px;
+              }
+        </pre>
+
+          <table>
+            <tbody>
+              <tr>
+                <th><strong>Composant</strong></th>
+                <th><strong>Mot dans le code</strong></th>
+                <th><strong>Rôle</strong></th>
+              </tr>
+              <tr>
+                <td><strong>Sélecteur</strong></td>
+                <td><code>p</code></td>
+                <td>Cible tous les paragraphes.</td>
+              </tr>
+              <tr>
+                <td><strong>Propriété</strong></td>
+                <td><code>font-size</code></td>
+                <td>Définit l'aspect à changer (la taille).</td>
+              </tr>
+              <tr>
+                <td><strong>Valeur</strong></td>
+                <td><code>16px</code></td>
+                <td>Donne la mesure précise.</td>
+              </tr>
+           </tbody>
+          </table>
+
+      <p>Il y a deux petits détails de ponctuation très importants en CSS pour que le navigateur comprenne bien la règle.</p>
+        <ul>
+          <li>Les deux-points (:) : Ils font le lien entre la propriété et sa valeur. C'est comme dire « égale » ou « vaut ».</li>
+            <ul>
+              <li>Exemple : <code>color : blue</code> (la couleur vaut bleu).</li>
+            </ul>
+          <li>Le point-virgule (;) : C'est le plus important ! Il indique la fin d'une instruction. Il permet de dire au navigateur : 
+            « J'ai fini de te donner cet ordre, tu peux passer au suivant ».</li>
+        </ul>
+
+        <pre>
+            p {
+              color: blue;       /* Fin de la première instruction */
+              font-size: 16px;   /* Fin de la deuxième instruction */
+            }
+        </pre>
+
+      <p>
+          ⚠️ Si on oublie un seul point-virgule, le navigateur risque d'ignorer toutes les règles qui suivent. C'est l'erreur numéro 
+          1 en CSS !
+      </p>
+    </article>
+
+    <article id="CiblagePrécisClasseid">
+      <h4>📙 Cibler des éléments plus précis avec les classes et les IDs</h4>
+
+        <ul>
+          <li><strong>La Classe (.) :</strong> C'est comme une étiquette</li> que l'on peut coller sur plusieurs éléments. 
+            Si on veut que trois paragraphes différents soient en gras et en vert, on leur donne la même classe.
+          <li><strong>L'ID (#) :</strong> C'est comme un numéro de sécurité sociale. Il doit être unique dans toute 
+            la page. On l'utilise pour cibler un élément bien précis et un seul (comme un menu de navigation ou un logo).</li>
+        </ul>
+
+        <pre>
+                /* Une classe commence par un point */
+                .texte-important {
+                    color: red;
+                }
+
+                /* Un ID commence par un hashtag */
+                #mon-logo {
+                    width: 200px;
+                }
+        </pre>
+
+        <p>On distingue les deux au niveau de la syntaxe (l'écriture du code) :</p>
+
+          <table>
+            <tr>
+              <th>Type</th>
+              <th>Signe en CSS</th>
+              <th>Attribut en HTML</th>
+              <th>Usage</th>
+            </tr>
+            <tr>
+              <td>Classe</td>
+              <td>. (point)</td>
+              <td><code>class="nom"</code></td>
+              <td>Pour un groupe d'éléments</td>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td># (dièse)</td>
+              <td><code>id="nom"</code></td>
+              <td>Pour un élément unique</td>
+            </tr>
+          </table>
+
+        <details>
+          <summary>Spécificité = Priorité</summary>
+          Dans notre fichier HTML, on a pour une liste de courses :
+          <pre>
+            &lt;p class="urgent"&gt;Pommes&lt;/p&gt;
+            &lt;p class="urgent"&gt;Pain&lt;/p&gt;
+          </pre>
+          Et dans notre fichier CSS, pour les mettre en rouge :
+          <pre>
+                .urgent {
+                  color : red;
+                }
+          </pre> 
+          Si on a une règle pour tous les paragraphes  :
+          <pre>
+                p {
+                  color : blue;
+                }
+          </pre>
+          "Pommes" et "Pain" serant toujours de couleur rouge.
+          <code>.urgent</code> gagne sur la balise <code>p</code> car elle est plus précise.
+          <p>C'est ce qu'on appelle <strong>la spécificité</strong> (ou la priorité). </p>
+        </details>
+
+          <p>Le navigateur suit une hiérarchie pour 
+            savoir quelle règle appliquer quand elles se contredisent</p>
+            <ul>
+              <li>L'ID (<code>#</code>) est le plus fort (le "super-chef").</li>
+              <li>La Classe (<code>.</code>) est moyennement forte (le "chef").</li>
+              <li>La Balise (<code>p, h1</code>, etc.) est la plus faible (le "soldat").</li>
+            </ul>
+        
+    </article>
+
+    <article id="Exercice">
+      <h4>Exercice</h4>
+        <p>
+          Regarde ces morceaux de codes :
+        </p>
+          <pre>
+          &lt;! -- HTML -- !&gt;
+          &lt;p id = "alerte-speciale" class = "info" &gt;Attention !&lt;/p&gt;
+
+          /* CSS */
+          p { 
+            color : green;
+          }
+
+          .info {
+            color : orange;
+          }
+
+          #alerte-speciale {
+            color: purple;
+          }
+          </pre>
+        
+          <details>
+            <summary>De quel couleur sera le texte ?</summary>
+             Le texte s'affichera en violet (<code>purple</code>).
+            <p>Le navigateur a suivi l'ordre de priorité que nous avons vu : l'ID 
+            (<code>#alerte-speciale</code>) a "écrasé" la classe (<code>.info</code>), 
+            qui elle-même avait "écrasé" la balise (<code>p</code>).<br>
+            C'est un concept essentiel car, dans des projets réels, on se demande souvent 
+            pourquoi une couleur ne change pas comme on le veut : c'est presque toujours 
+            une question de priorité !
+            </p>
+          </details>
+    </article>
+
+    <article id="boxModels">
+      <h4>📙 Le Modèle de Boîte (Box Model)</h4>
+
+        <p>En CSS, on considère que chaque élément HTML est une boîte rectangulaire.</p>
+        <p>Imaginons qu'on reçoit un tableau fragile par la poste.<br>
+          Pour comprendre comment la place est occupée, on regarde quatre couches, de l'intérieur vers l'extérieur :
+          <0l>
+            <li><strong>Le Contenu (Content) :</strong> C'est le texte ou l'image (le tableau lui-même).</li>
+            <li><strong>Le Rembourrage (Padding) :</strong> C'est l'espace vide à l'intérieur de la boîte, entre le 
+              texte et le cadre (comme du papier bulle).</li>
+            <li><strong>La Bordure (Border) : C'est le cadre de la boîte (le carton).</strong></li>
+            <li><strong>La Marge (Margin) :</strong> C'est l'espace vide à l'extérieur de la boîte, pour l'éloigner des 
+              autres boîtes voisines.</li>
+          </0l>
+        </p>
+
+        <p> Si on augmente le padding, l'espace entre la bordure et le texte va s'agrandir.</p>
+
+        <p>C'est exactement comme ajouter des couches de papier bulle à l'intérieur d'un colis : l'objet (le contenu) ne 
+          change pas de taille, mais la boîte devient plus "moelleuse" et l'espace entre l'objet et les parois du carton 
+          augmente.</p>
+
+          <details>
+            <summary>Astuce pour ne plus jamais confondre <strong>Padding </strong>et <strong>Margin</strong> :</summary>
+              <ul>
+                <li><strong>Padding</strong> = <strong>Confort intérieur</strong> (l'espace pour que le texte "respire").</li>
+                <li><strong>Margin</strong> = <strong>Distance extérieure</strong> (pour ne pas toucher les voisins).</li>
+              </ul>
+              <p>On utilise la margin car on veut agir sur l'espace extérieur à la boîte pour repousser les éléments voisins.</p>
+          </details>
+
+        <p>
+         💡 En CSS, on peut régler les quatre côtés d'un coup (Haut, Droite, Bas, Gauche) dans le sens des aiguilles d'une montre.
+        </p>
+          <pre>
+            CSS : 
+                  button {
+                    margin: 10px 20px 10px 20px; 
+                    /* Haut: 10px | Droite: 20px | Bas: 10px | Gauche: 20px */
+                  }
+          </pre>
+    </article>
+</section>
+
+<section id="selecteursPrincipauxCss">
+  <h3>CSS | Les Sélecteurs à connaitre</h3>
+
+    <p>Voici les sélecteurs "indispensables" qu'on rencontrera '90% du temps, classés par type :</p>
+
+    <article id="selecteursDeBaseCss">
+      <h4>📙 Les Sélecteurs de Base</h4>
+        <p>Ils ciblent directement ce qui est écrit dans le HTML.</p>
+
+          <ul>
+            <li><strong>Universel</strong> (*) : <strong>Cible tous les éléments de la page sans exception</strong>. On 
+              l'utilise souvent pour "réinitialiser" les marges par défaut.</li>
+            <li><strong>De Type</strong> (<code>h1, p, div</code>) : Cible toutes les balises d'un certain nom.</li>
+            <li><strong>De Classe</strong> (<code>.maClasse</code>) : Cible tous les éléments ayant cet attribut <code>class</code>.</li>
+            <li><strong>D' ID</strong> (<code>#monID</code>) : Cible l'unique élément ayant cet <code>id</code>.</li>
+          </ul>
+    </article>
+
+    <article id="selecteursCombinateursCss">
+      <h4>📙 Les Sélecteurs de Relation (combinateurs)</h4>
+        <p>Ils sont très utiles pour cibler un élément selon sa place dans la structure. Imaginons cela comme un arbre généalogique.</p>
+        <ul>
+          <li><strong>Descendant (<code>espace</code>) : </strong>Cible un élément à l'intérieur d'un autre.<br>
+          Exemple : <code>div p</code> cible tous les paragraphes qui sont dans un <code>class</code>.</li>
+          <li><strong>Enfant direct (<code>></code>) :</strong>Cible uniquement les enfants directs (pas les petits-enfants).<br>
+          Exemple : <code>ul > li</code> cible les puces directement dans la liste.</li>
+        </ul>
+    </article>
+
+    <article id="pseudoClassesCss">
+      <h4>📙 Les Pseudo-Classes (Etats)</h4>
+        <p>Ils permettent de styliser un élément selon son état ou son comportement. Ils commencent toujours par un seul deux-points 
+          (<code>:</code>).</p>
+          <ul>
+            <li><code>:hover</code> : S'active quand la souris passe sur l'élément (très utilisé pour les boutons).</li>
+            <li><code>:active</code> : S'active au moment précis où l'on clique.</li>
+            <li><code>:focus</code> : S'active quand l'élément est sélectionné (par exemple, quand on clique dans un champ de formulaire).</li>
+            <li><code>:nth-child(n)</code> : Permet de cibler, par exemple, un élément sur deux dans une liste (très pratique pour faire des 
+              tableaux à lignes alternées).</li>
+          </ul>
+    </article>
+
+    <article id="tableauRecapSelecteursCss">
+      <h4>📙 Tableau Récapitulatif :</h4>
+      <table>
+        <tr>
+          <th>Sélecteur</th>
+          <th>Syntaxe</th>
+          <th>Usage courant</th>
+        </tr>
+        <tr>
+          <td>Universel</td>
+          <td><code>* { ... }</code></td>
+          <td>Reset (marges à zéro)</td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td><code>a { ... }</code></td>
+          <td>Styliser tous les liens</td>
+        </tr>
+        <tr>
+          <td>Classe</td>
+          <td><code>.btn { ... }</code></td>
+          <td>Créer un style de bouton réutilisable</td>
+        </tr>
+        <tr>
+          <td>ID</td>
+          <td><code>#main-nav { ... }</code></td>
+          <td>Styliser la barre de navigation</td>
+        </tr>
+        <tr>
+          <td>Survol</td>
+          <td><code>button:hover</code></td>
+          <td>Changer la couleur au passage de la souris</td>
+        </tr>
+        <tr>
+          <td>Descendant</td>
+          <td><code>nav a</code></td>
+          <td>Liens situés uniquement dans le menu</td>
+        </tr>
+      </table>
+    </article>
+
+  <p><span id="bonnePratique">| BONNE PRATIQUE |</span> Quand on écrit nos classes ou nos IDs, éviter les espaces 
+    et les accents. Utiliser plutôt des tirets (comme .mon-titre-bleu), c'est ce qu'on appelle le 
+    <strong>"kebab-case"</strong>. C'est beaucoup plus lisible pour le code !</p>
+</section>
+
+<section id="tableauxCss">
+  <h3>CSS | Mise en forme des Tableaux</h3>
     <p>
-     Il faut intégrer cette règle physique absolue en CSS : absolument chaque élément est une boîte rectangulaire. Même un texte qui semble avoir une forme 
-     complexe ou un simple lien, le navigateur le calcule comme un rectangle délimité.
+      La mise en page des tableaux en CSS est un peu particulière. Par défaut, un 
+      tableau HTML est très "brut" et serré.
     </p>
 
-    <ol>Cette boîte est composée de son contenu au centre, entouré de trois couches d'espace que tu peux manipuler :
-      <li>Le <strong>Padding </strong>(l'espace interne de la boite). Le padding crée l'espace à l'intérieur de la bordure, ce qui permet au texte de respirer 
-        sans agrandir l'objet lui-même.</li>
-      <li>La <strong>Border</strong> (la bordure, qui peut être visible ou invisible)</li>
-      <li>La <strong>Margin</strong> (la marge ewterne, la distance pour repousser les autres éléments de la page)</li>
-    </ol>
+    <P>
+      Pour bien comprendre, il faut voir le tableau comme un emboîtement : le tableau 
+      (<code>table</code>) contient des lignes (<code>tr</code>), qui contiennent des 
+      cellules de titre (<code>th</code>) ou de données (<code>td</code>).
+    </P>
 
-  </article>
+      <article id="propriétésTableauxCss">
+        <h4>📙 Les Propriétés des Tableaux</h4>
+          <p>
+            Voici les propriétés essentielles pour transformer un tableau austère en 
+            quelque chose de pro et lisible :
+          </p>
 
-  <article>
-    <h4>📙 La Mise en Page</h4>
-    
-    <p>
-      L'outil incontournable pour structurer et aligner des éléments s'appelle <strong>Flexbox.</strong><br>
-      L'idée de base est très logique : on prend un élément parent (un grand conteneur) et on lui donnes le pouvoir 
-      de distribuer intelligemment l'espace entre ses enfants (les éléments situés à l'intérieur).
-    </p>
+          <ol>
+            <li>La fusion des bordures (<code>border-collapse</code>)
+              <p>C'est la règle indispensable. Par défaut, le navigateur dessine une 
+                bordure autour de chaque cellule ET autour du tableau, ce qui crée un 
+                double trait assez laid.</p>
+              <p>
+                <code>border-collapse: collapse;</code> : Fusionne les doubles bordures 
+                en une seule ligne nette.
+              </p>
+            </li>
 
-    <p>
-      Imaginons un conteneur qui regroupe trois petits blocs. Par défaut, le navigateur les place de façon très basique. 
-      Pour débloquer les capacités de Flexbox (comme, par exemple, les centrer parfaitement sur un axe ou les espacer uniformément), 
-      il faut déclencher ce mode sur le conteneur parent.<br>
-      la valeur pour activer ce mode est <code>flex</code>. La règle exacte à appliquer au conteneur parent est donc <code>display: flex;</code>.
-      Une fois le mode Flexbox activé, les éléments enfants se placent par défaut en ligne au début du conteneur (sur l'axe horizontal). C'est 
-      à ce moment-là que l'on utilise des propriétés spécifiques pour dicter leur position.
-    </p>
+            <li>L'espacement intérieur (<code>padding</code>)
+              <p>
+                Comme avec le "Box Model", les cellules ont besoin de respirer. On 
+                applique le padding sur les <code>th</code> et les <code>td</code>, 
+                jamais sur le table lui-même.
+              </p>
+              <pre>
+                td, th {
+                  padding: 12px;            /* Donne de l'espace autour du texte */
+                  text-align: left;         /* Aligne le texte à gauche */
+                }
+              </pre>
+            </li>
 
-    <détails>
-      <summary>Quelle serait la règle complète pour que nos petits blocs se placent parfaitement au centre ?</summary>
-        <code>display: justify-center;</code>>
+            <li>Les lignes zébrées (<code>:nth-child</code>)
+              <p>Pour faciliter la lecture de grandes listes (très utile pour aider l'œil 
+                à ne pas sauter de ligne, ce qui est super pour le confort visuel 
+                neuroatypique !), on utilise une pseudo-classe.
+              </p>
+                <table>
+                  <tr>
+                    <td><code>tr:nth-child(even)</code></td>
+                    <td>Cible toutes les lignes paires.</td>
+                  </tr>
+                  <tr>
+                    <td><code>tr:nth-child(odd)</code></td>
+                    <td>Cible toutes les lignes impaires.</td>
+                  </tr>
+                </table>
+                  <pre>
+                  tr:nth-child(even) {
+                    background-color: #f2f2f2;    /* Gris très clair pour une ligne sur deux */
+                  }
+                  </pre>
+            </li>
+          </ol>
+      </article>
+
+      <article id="blocModeleTableauCss">
+        <h4>📙 Un Bloc de Code "Modèle</h4>
+        <pre>
+      table {
+        width: 100%;                  /* Le tableau prend toute la largeur */
+        border-collapse: collapse;    /* Fusionne les bordures */
+        margin: 20px 0;               /* Espace extérieur haut/bas */
+      }
+
+      th, td {
+        border: 1px solid #ddd;       /* Bordure fine grise */
+        padding: 12px;                /* Respiration intérieure */
+      }
+
+      th {
+        background-color: #4CAF50;    /* Couleur de fond pour l'entête */
+        color: white;                 /* Texte de l'entête en blanc */
+      }
+
+      tr:hover {
+        background-color: #f5f5f5;    /* La ligne s'illumine au survol de la souris */
+      }   
+        </pre>
+
+      <p>Petit détail qui tue !<br>
+        Remarque la dernière règle : <code>tr:hover</code>. Elle permet de mettre en 
+        évidence la ligne que l'utilisateur est en train de lire.
+      </p>
+      </article>
+</section>
+
+<section id="Flexbox">
+  <h3>CSS | Les FlexBox</h3>
+  <p>Flexbox est un système pensé spécialement pour ranger, aligner et répartir l'espace entre 
+    des éléments dans un conteneur, même si leur taille est inconnue ou dynamique.</p>
+
+    <article id="modeleMentalFlexbox">
+      <h4>📙 Modèle de FlexBox</h4>
+      
+      <ol>
+        <li><strong>La règle d'or : Le Parent et les Enfants</strong>
+        <p>Flexbox fonctionne toujours sur un système de relation directe.</p>
+          <ul>
+            <li>On doit déclarer <code>display: flex;</code> sur la boîte parente (le conteneur).</li>
+            <li>Automatiquement, tous les éléments directement à l'intérieur (les enfants) deviennent 
+              des "éléments flex" et obéissent aux nouvelles règles d'alignement.</li>
+          </ul></li>
+
+        <li><strong>Les deux axes (L'autoroute de Flexbox)</strong>
+        <p>Quand on active Flexbox, on crée deux axes invisibles :</p>
+          <ul>
+            <li><strong>L'axe principal (Main Axis) :</strong> C'est la direction dans laquelle tes éléments vont s'
+              aligner par défaut (en ligne, de gauche à droite). On le contrôle avec flex-direction.</li>
+              <li><strong>L'axe secondaire (Cross Axis) :</strong> C'est l'axe perpendiculaire (de haut en bas).</li>
+          </ul></li>
+
+        <li><strong>Les 3 propriétés indispensables</strong>
+        <p>Une fois qu'on a écrit <code>display: flex;</code> sur ton conteneur, voici les trois "boutons de 
+          réglage" les plus souvent utilisés :</p>
+          <Table>
+            <tr>
+              <th>Propriété</th>
+              <th>Ce qu'elle fait</th>
+              <th>Valeurs les plus courantes</th>
+            </tr>
+            <tr>
+              <td><code>flex-direction</code></td>
+              <td>  Définit le sens de la file d'attente (l'axe principal).</td>
+              <td><code>row</code> (en ligne - par défaut), <code>column</code> (en colonne).</td>
+            </tr>
+            <tr>
+              <td><code>justify-content</code>A</td>
+              <td>ligne les éléments sur l'<stronger>axe principal</stronger> (les espacer 
+                sur la ligne).</td>
+              <td><code>center</code> (au milieu), <code>space-between</code> (écarter aux 
+                extrémités), <code>flex-start</code> (au début).</td>
+            </tr>
+            <tr>
+              <td><code>align-items</code></td>
+              <td>Aligne les éléments sur l'<stronger>axe secondaire</stronger> (les centrer 
+                verticalement).</td>
+              <td><code>center</code>(centré), <code>stretch</code> (étiré pour remplir la hauteur),
+              <code>flex-start</code> (en haut).</td>
+            </tr>
+          </Table>
+        </li>
+      </ol>
+    </article>
+
+    <article id="flexWrap">
+      <h4>📙 Le retour à la ligne (<code>flex-wrap</code>)</h4>
+      <p>Pour compléter la méthode Flexbox, le retour à la ligne (<code>flex-wrap</code>), est 
+        le dernier concept très utile pour le "responsive" (faire en sorte que le site s'adapte 
+        aux téléphones) :</p>
+
+        <ul>Par défaut, Flexbox essaie de faire tenir tous les éléments sur une seule ligne, 
+          même s'ils doivent s'écraser.
+          <li><code>flex-wrap: nowrap;</code> (Par défaut) : Tout le monde reste sur la même 
+            ligne, quitte à déborder.</li>
+          <li><code>flex-wrap: wrap;</code> : Si les éléments n'ont plus de place, ils passent 
+            automatiquement à la ligne suivante. C'est parfait pour une galerie d'images ou une 
+            liste de cartes.</li>
+        </ul>
+    </article>
+
+    <article id="gapFlexbox">
+      <h4>📙 L'espace entre les éléments (<code>gap</code>)</h4>
+        <ul> Plus besoin de s'embêter avec des <code>margin-right</code> compliquées sur chaque enfant !
+          <li><code>gap: 20px;</code> : On l'écrit sur le parent, et cela crée un espace régulier de 20px 
+            entre tous les éléments (mais pas sur les bords extérieurs). C'est beaucoup plus propre.</li>
+        </ul>
+    </article>
+
+    <article id="flewGrow">
+      <h4>📙 Le Partage de l'Espace (<code>flex-grow</code>)</h4>
+        <p>Pour bien visualiser ce concept, il faut changer de perspective. Jusqu'à présent, on a vu comment 
+          ranger les boîtes. Avec <code>flex-grow</code>, on va voir comment elles se partagent l'espace vide.
+        </p>
+        <ul>Le concept : "Le partage du gâteau" 
+          <li>Notre conteneur Flexbox est une boîte avec trois éléments à l'intérieur. Si ces trois éléments 
+            sont petits, il reste de l'espace vide à droite.</li>
+            <li>La propriété <code>flex-grow</code> (littéralement "capacité à grandir") est une consigne 
+              que l'on donne aux enfants (pas au parent !) pour leur dire comment ils doivent se goinfrer 
+              de cet espace vide restant.</li>
+        </ul>
+
+        <p>a règle mathématique (très simple !)</p>
+        <ul><code>flex-grow</code> prend comme valeur un nombre entier sans unité (0, 1, 2, 3...).
+          <li><code>flex-grow: 0;</code> (C'est le réglage par défaut). L'élément dit : "Non merci, je 
+            garde ma taille de base, je ne veux pas d'espace en plus."</li>
+          <li><code>flex-grow: 1;</code> L'élément dit : "Je prends une part de l'espace vide."</li>
+          <li><code>flex-grow: 2;</code> L'élément dit : "Je prends deux parts de l'espace vide !"</li>
+        </ul>
+        <p>Si on a deux boîtes et qu'on donne <code>flex-grow: 1</code> à la première et 
+          <code>flex-grow: 2</code> à la deuxième, le navigateur va couper l'espace vide en 3 parts égales. 
+          Il en donnera une à la première boîte, et deux à la deuxième.</p>
+
+        <p>⚠️<code>flex-grow</code> ne multiplie pas la taille totale de l'élément, il répartit uniquement 
+          l'espace vide restant. Si une boîte contient un mot très long et l'autre un mot très court, même 
+          avec code>flex-grow: 1</code> sur les deux, elles n'auront pas exactement la même largeur finale, 
+          car elles n'avaient pas la même taille au départ !</p>
+
+    </article>
+
+    <article id="flexShrink">
+      <h4>📙 La Compression de l'Espace (<code>flex-shrink</code>)</h4>
+        <p><code>flex-shrink</code> suit exactement la même logique que <code>flex-grow</code>, mais à 
+          l'envers.</p>
+
+        <ul><strong>Le concept : "S'écraser dans le métro"</strong>
+          <li>Imaginons que notre conteneur Flexbox est une rame de métro aux heures de pointe. 
+            Les éléments à l'intérieur ont une certaine taille de base, mais soudain, il n'y a plus 
+            assez de place pour tout le monde (le conteneur est trop petit).</li>
+          <li>La propriété <code>flex-shrink</code> (littéralement "capacité à rétrécir") est une 
+            consigne donnée aux enfants pour leur dire comment ils doivent se compresser pour éviter 
+            de déborder de la rame.
+          </li>
+        </ul>
+        <ul><strong>La règle mathématique (le jumeau inversé)</strong>
+          <li>Contrairement à <code>flex-grow </code>(qui est à 0 par défaut), la valeur par défaut de 
+            <code>flex-shrink</code> est 1. C'est pour cela que les éléments Flexbox ont naturellement 
+            tendance à s'écraser gentiment pour rester sur une seule ligne.</li>
+            <ul>
+              <li><code>flex-shrink: 1;</code> (Par défaut) : L'élément dit : "D'accord, je vais me 
+                serrer proportionnellement avec mes voisins pour que tout rentre."</li>
+              <li><code>flex-shrink: 0;</code> : L'élément dit : "Hors de question que je me serre !" 
+                (Il garde sa taille d'origine à 100%, quitte à déborder hors de la page ou à écraser 
+                complètement ses voisins).</li>
+              <li><code>flex-shrink: 2;</code>: L'élément dit : "Je suis très souple, je vais me 
+                compresser deux fois plus vite que les autres."</li>
+            </ul>
+        </ul>
+    </article>
+
+    <article id="flexBasis">
+      <h4>📙 La Taille Idéale de l'élément (<code>flex-basis</code>)</h4>
+
+      <ul><code>flex-basis</code>, c'est la taille idéale que l'élément aimerait avoir avant que l'on 
+        applique le partage de l'espace (<code>flex-grow</code>) ou la compression (<code>flex-shrink</code>).
+        <li>C'est comme dire : "Dans un monde idéal, j'aimerais faire 200px de large. Mais je sais qu'on est 
+          dans Flexbox, donc je m'adapterai s'il le faut !"</li>
+        <li>⚠️ Sur l'axe principal (en ligne), <code>flex-basis</code> remplace la propriété <code>width</code> 
+          (largeur).</li>
+      </ul>
+    </article>
+
+    <article id="flexSyntaxe">
+      <h4>📙 Super Raccourci : La Syntaxe <code>flex</code></h4>
+      La propriété <code>flex</code> combine les trois réglages : <code>flex-grow</code>, <code>flex-shrink</code> 
+      et <code>flex-basis</code> dans une seule formule et dans un ordre très précis.
+        <pre>
+          /* L'ordre est toujours le même : Grow, Shrink, Basis */
+          .ma-boite {
+             flex: [flex-grow] [flex-shrink] [flex-basis];
+          }
+        </pre>
+        Exemple :
+        <pre>
+          .ma-boite {
+            flex: 1 0 200px; 
+          }
+        </pre>
+        Traduction pour le navigateur : "Ta taille idéale est de 200px (<code>basis</code>). S'il reste 
+        de la place, tu grandis pour la prendre (<code>grow: 1</code>). S'il manque de la place, tu 
+        refuses de rétrécir (<code>shrink: 0</code>)."
+        <p></p>
+    </article>
+
+    <details>
+      <summary>Les "Cheat Codes": des versions encore plus courtes</summary>
+      <ul>
+        <li><code>flex: 1;</code> : C'est le plus courant ! Le navigateur comprend automatiquement que tu 
+          veux dire « Prends toute la place disponible de manière égale avec tes voisins, peu importe ta 
+          taille de base ».</li>
+        <li><code>flex: initial;</code> : C'est le comportement par défaut (« Reste à ta taille normale, 
+          ne grandis pas, mais rétrécis si besoin »).</li>
+      </ul>
     </details>
-  
+
+    <article id="kitSurvieFlexbox">
+      <h4>📙Kit de Survie FlexBox </h4>
+      <table>
+        <tr>
+          <td>Je veux ranger des éléments ? </td>
+          <td>→ <code>display: flex;</code> sur le parent.</td>
+        </tr>
+        <tr>
+          <td>Dans quel sens ?</td>
+          <td>→ <code>flex-direction</code> (ligne ou colonne).</td>
+        </tr>
+        <tr>
+          <td>Alignement sur la ligne ? </td>
+          <td>→ <code>justify-content</code> .</td>
+        </tr>
+        <tr>
+          <td>Alignement en hauteur ?</td>
+          <td>→ <code>align-items</code> .</td>
+        </tr>
+        <tr>
+          <td>Besoin d'espace ? </td>
+          <td>→ <code>gap</code> .</td>
+        </tr>
+        <tr>
+          <td>Qui prend l'espace en trop ? </td>
+          <td>→ <code>flex-grow</code> (Par défaut : 0, personne ne grandit).</td>
+        </tr>
+        <tr>
+          <td>Qui se sacrifie quand il manque de l'espace ?</td>
+          <td>→ <code>flex-shrink</code> (Par défaut : 1, tout le monde se serre).</td>
+        </tr>
+      </table>
+    </article>
+
+   
+</section>
+
+<section id="gridCss">
+  <h3>CSS | Grid (La Grille)</h3>
+
+  <article id="differenceGridFlexbow">
+    <h4>📙 La Différence entre Flexbox et Grid</h4>
+    <P><strong>Flexbox = 1 Dimension.</strong><br>
+      Il gère les éléments soit sur une ligne (horizontal), soit sur une colonne (vertical). 
+      C'est parfait pour aligner des boutons ou un menu.
+    </P>
+    <p><strong>Grid = 2 Dimensions.</strong><br>
+      Il gère les éléments sur les lignes ET les colonnes en même temps. C'est parfait pour 
+      construire la structure globale d'une page entière (l'en-tête en haut, le menu à gauche, 
+      le contenu au centre, le pied de page en bas).
+    </p>
   </article>
 
-  
+  <article id="methodeMathGrid">
+    <h4>📙 Grid : La Méthode Mathématique :</h4>
+    <ol>
+      <li><strong>Créer la Grille (Sur le Parent)</strong>
+        <p>Comme pour Flexbox, tout commence sur le conteneur parent. Dès qu'on écrit  
+          <code>display: grid;</code>, on transforme notre boîte en une grille invisible.<br>
+          Ensuite, on doit dire au navigateur combien de colonnes et de lignes on veut, et 
+          quelle doit être leur taille. Pour cela, l'unité de mesure : le <code>fr</code> (Fraction).
+        </p>
+        <p><code>1fr</code> signifie "une part du gâteau". Si on a trois colonnes de <code>1fr</code>, 
+          l'espace est coupé en trois parts égales.
+        </p>
 
+          <details>
+            <summary>Les 3 propriétés de base à noter pour le parent</summary>
+            <table>
+              <tr>
+                <th>Propriété</th>
+                <th>  Ce qu'elle fait</th>
+                <th>  Exemple</th>
+              </tr>
+              <tr>
+                <td><code>grid-template-columns</code></td>
+                <td>t le nombre et la largeur des colonnes (verticales).</td>
+                <td><code>1fr 1fr 1fr</code> (Crée 3 colonnes de taille égale)</td>
+              </tr>
+              <tr>
+                <td><code>grid-template-rows</code></td>
+                <td>Définit la hauteur des lignes (horizontales).</td>
+                <td><code>100px auto</code>  (Ligne 1 = 100px, Ligne 2 = s'adapte)</td>
+              </tr>
+              <tr>
+                <td><code>gap</code></td>
+                <td>L'espace vide entre les cases.</td>
+                <td><code>20px</code></td>
+              </tr>
+            </table>
+          </details>
+      </li>
+      <li><strong> Placer les éléments (Sur les Enfants)</strong><br>
+        <p>Une fois que notre grille est dessinée, on peut dire à n'importe quelle boîte 
+          (les enfants) : "Toi, tu vas t'étirer de la colonne 1 à la colonne 3".
+        </p>
+        <p>⚠️ <span class="noteAttention"> Piège à éviter :</span><br>
+          Quand on place un élément, on ne compte pas les cases, on compte les lignes de 
+          séparation !
+        </p>
+          <ul>Imaginons un mur avec 3 fenêtres. Pour encadrer ces 3 fenêtres, il y a 4 piliers. 
+            En Grid, on compte les piliers.
+            <li>Ligne 1 = Le bord tout à gauche.</li>
+            <li>Ligne 2 = La première séparation.</li>
+            <li>Ligne 3 = La deuxième séparation.</li>
+            <li>Ligne 4 = Le bord tout à droite.</li>
+          </ul>
+          <p>Pour dire à une boîte de prendre les deux premières colonnes, on écrit :
+            <pre>
+              .ma-boite {
+                grid-column: 1 / 3; /* Commence à la ligne 1, s'arrête avant la ligne 3 */
+              }
+            </pre>
+          </p>
+      </li>
+    </ol>
+  
+    <details>
+      <summary>Aide-Mémoire</summary>
+      <table>Si on dois construire une page, 2 questions à se poser :
+        <tr>
+          <th>Est-ce une structure globale ? (Mise en page, tableau 
+            de bord, galerie complexe)</th>
+          <td>→ Utiliser Grid.</td> 
+        </tr>
+        <tr>
+          <th>Est-ce un alignement local ? (Boutons d'un menu, icône 
+          à côté d'un texte)</th>
+          <td>→ Utilise Flexbox.</td>
+        </tr>
+        </table>
+    </details>
+  </article>
+
+  <article id="gridArea">
+    <h4>📙 Grid : la Méthode 100% Visuelle</h4>
+    <ol>
+      <li><strong>Étape 1 : Donner un nom aux enfants</strong><br>
+        Plutôt que de dire à une boîte "va de la ligne 1 
+        à 3", on va simplement lui coller une étiquette sur le front 
+        grâce à la propriété</strong>
+        <pre>
+          .mon-en-tete {
+            grid-area: header;
+          }
+
+          .mon-menu {
+            grid-area: sidebar;
+          }
+
+          .mon-contenu {
+            grid-area: main;
+          
+          }
+        .mon-pied-page {
+          grid-area: footer;
+        }
+        </pre>
+      </li>
+      <li><strong>Étape 2 : Dessiner la carte sur le parent</strong><br>
+        Maintenant, on retourne sur notre conteneur principal (<code>display: grid;</code>). 
+        Avec la propriété <code>grid-template-areas</code>, on va littéralement "dessiner" 
+        notre mise en page en écrivant les noms des zones. Chaque mot représente une case.
+        <pre>
+          .conteneur {
+            display: grid;
+            grid-template-areas:          /* On dessine une grille avec des mots entre guillemets */
+              "header header header"
+              "sidebar main main"
+              "footer footer footer";
+          }
+        </pre>
+        <ul>Le code ressemble bien à la page finale :
+          <li>le <code>header</code> prend 3 cases en haut,</li>
+          <li>la <code>sidebar</code> prend 1 case à gauche,</li>
+          <li>le <code>main</code> prend 2 cases à droite, </li>
+          <li> et le <code>footer</code> prend 3 cases en bas.</li>
+        </ul>
+      </li>
+    </ol>
+    <p>C'est génial pour la maintenance de notre code.<br>
+      Si demain notre client dit "Finalement, je veux le menu à droite plutôt qu'à gauche", 
+      on n'a pas besoin de recalculer toutes tes lignes. On a juste à inverser les mots 
+      <code>"main sidebar"</code> dans notre carte !
+    </p>
+  </article>
 </section>
