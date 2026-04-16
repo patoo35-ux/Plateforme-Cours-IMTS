@@ -6,75 +6,77 @@
   <title>IMTS | Formation Préparatoire aux Métiers du Numérique</title>
   <link rel="stylesheet" href="./css/styles.css">
   <script src="./js/script.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="./img/faviconAlien.svg">
 </head>
 
-<body>
+  <body>
 
-<header id="topBar">
-  <button id="menuToggle" aria-label="Ouvrir le menu">☰</button>
-  <h1>IMTS | Formation Préparatoire aux Métiers du Numérique</h1>
-</header>
+    <header id="topBar">
+      <button id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+      <h1>Formation Préparatoire aux Métiers du Numérique</h1>
+    </header>
 
 <div id="sideBarMenu"></div>
 
-<main id="mainWindow"> 
- <section id="intro">
-    <h2>Introduction</h2>
-        <p class="avecPicto"><img src="./img/pictoHTML.png" class="picto">HTML : langage de balises 
-        pour structurer le contenu (= squelette).</p>
-        <p class="avecPicto"><img src="./img/pictoCss.png" class="picto">CSS : langage de règles de 
-        styles pour mettre en forme le contenu (l'apparence).</p>
-        <p class="avecPicto"><img src="./img/pictoJs.png" class="picto">JavaScript : langage de 
-        programmation. Lui, il sert à rendre les pages web intéractives et il
-        est principalement utilisé côté utilisateur.</p>
+    <main id="mainWindow"> 
+      <section id="presentation">
+        <h3>Présentation</h3>
+          <p>
 
-    <article>
-        <h2>Une explication un peu plus détaillée :</h2> 
-        <h3>Le HTML | La Structure</h3>
-        <ul>
-          <li>C'est le langage de base d'une page web.</li>
-          <li>Il utilise des balises (<code>&lt;h1&gt;, &lt;p&gt;, &lt;img&gt;</code>).</li>
-          <li>Sans HTML, rien n'apparaît sur une page web.</li>
-          <li>C'est le squelette du site.</li>
-        </ul>
-  
-        <h3>Le CSS | Le Style</h3>
-          <ul>
-            <li>Sert à mettre en forme le HTML.</li>
-            <li>Gère les couleurs, polices, marges, alignements, animations.</li>
-          <li>Transforme une page web brute en quelque chose de beau et lisible.</li>
-            <li>Sépare le contenu (HTML) de l'apparence.</li>
-          </ul>
+          </p>
+      </section>
+        
+ 
+      <section id="presentionIndex">
+        <article id="quiJeSuis" >
+          <h4>Qui je suis ?</h4>
+            <span>Future Développeuse Full Stack | Ex-Manager Opérationnel Retail</span> 
+            <p>Premier couplé de mon curriculum vitae :
+              <cite> 'Suite à une évolution de mon parcours de vie m'imposant de quitter les métiers de terrain, 
+                j'ai choisi de mettre à profit ma capacité d'analyse et ma rigueur au service du numérique. Cette 
+                transition est le fruit d'une réflexion approfondie pour concilier mes compétences stratégiques et 
+                un environnement de travail adapté. Experte dans l’accompagnement des équipes et l’optimisation de 
+                la id="miseEnValeur1" performance, je souhaite mettre ma rigueur et ma vision "utilisateur" au profit de projets Tech 
+                innovants.'
+              </cite>
 
-        <h3>Le JavaScript| l'intéractivité</h3>
-          <ul>
-            <li>C'est un langage de programmation.</li>
-            <li>Permet de réagir aux actions de l'utilisateur :</li>
-            <ul>
-              <li>ouvrir un menu,</li>
-              <li>valider un formulaire,</li>
-              <li>afficher un message</li>
-              <li>animerun élément :</li>
-            </ul>
-          <li>Rend la page dynamique et vivante.</li>
-        </ul>
-      </article>
-    </section>
+            </p>
+        </article>
+        
+        <article>
+          <h4>C'est quoi cette page ?</h4>
+            <span>C'est mon bac à sable. </span>
+        </article>
 
+        <article id="institutsolacroup">
+          <h4>L' Institut Marie-Thérèse Solacroup en quelques mots.</h4>
+            <p>L'IMTS est une organisation qui oeuvre pour la Formation et l'Insertion socio-professionnelle 
+              des jeunes et des personnes en situation de handicap invisible. La majorité des bénéficiaires présente des 
+              profils neuro-atypiques.<br></p>
+            <p>Le Pôle Numérique propose un parcours de formation professionnelle pour devenir Développeur Web. Le module : 
+              <strong>'Préparatoire aux Métiers du Numérique'</strong> permet de décourvrir les métiers du Numérique en acquérant 
+              les premières compétences et en enrichissant notre culture du numérique, et ainsi de valider notre le projet 
+              professionnel du bénéficiaire.
+            </p>
+            
+              <figure>
+                <a href="https://www.institutsolacroup.com/" target="_blank" class="imtsPhoto">
+                <img id="imtsPhoto" src="./img/img_adressImts.jpg" alt="Panoramique sur le château Hébert, siège de la 
+                Fondation Solacroup-Hébert, situé à Dinard en Bretagne."></a>
+                <figcaption>Pour en savoir plus sur l'IMTS et la Fondation Solacroup-Hébert.</figcaption>
+              </figure>
+          </article>
+      </section>
 
-</main>
+    </main>
 
-<footer id="downBar">
-  <p>
-  © 2026 — Rédaction & Intégration Patricia GUILLOT - Source principale : cours de Pierre ALLEE, 
-  formateur à IMT Solacroup de <adress>Dinard, Bretagne</adress>.
-  </p>
-</footer>
-<button id="scrollTopBtn" aria-label="Remonter en haut" title="Remonter en haut">
-    ↑
-  </button>
+      <footer id="downBar">
+        <p> © 2026 — <adress>Dinard, Bretagne</adress>.</p>
+      </footer>
 
-</body>
-</html>
-</body>
-</html>
+        <button id="scrollTopBtn" aria-label="Remonter en haut" title="Remonter en haut">
+            ↑
+        </button>
+
+  </body>
+</html> 
