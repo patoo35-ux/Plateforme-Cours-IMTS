@@ -1,13 +1,57 @@
 <nav id="sidebarNav">
+  <a href="./index.html" id="retourAccueil">
   <img src="./img/LogoInsideBar.jpg" alt="Logo du menu" class="logo-menu">
-  <h3>MENU</h3>
+  </a>
 
-  <ul class="menu">
-    <li>
-      <a href="./index.html">Introduction</a>
-    </li>
+  <section>
+    <h4>Introduction Métiers du Numérique</h4>
+    <ul class="menu">
+      <li class="menuGroup">
+        <button class="accordionBtn" data-module="PrepaNum" aria-expanded="false">
+          <img src="./img/computer.svg" id="logoCode" class="picto" alt="Logo Computer">
+          <span>C'est quoi ce truc ?</span>
+        </button>
+
+          <ul class="accordionContent">
+            <li>
+              <span class="submenuTitle">Un Ordinateur</span>
+                <ul>
+                  <li><a href="#hardWare">Anatomie</a></li>
+                  <li><a href="#fonctionComputer">Fonctionnement</a></li>
+                  <li><a href="#parlerRobot">'Parler Robot'</a></li>
+                </ul>
+            </li>
+          </ul>
+
+      </li>
+    </ul>
+
+  </section>
+
+  <section>
+    <h4>Langages Développement Web</h4>
+    <ul class="menu">
+<!--Module Introduction Langages ---------------------------------------->
+      <li class="menuGroup">
+      <button class="accordionBtn" data-module="introLang" aria-expanded="false">
+        <img src="./img/code.svg" id="logoCode" class="picto" alt="Logo Code">
+        <span>Langages de programmation Web</span>
+      </button>
+
+        <ul class="accordionContent">
+          <li>
+            <span class="submenuTitle">Un Langage | Un Rôle</span>
+            <ul>
+              <li><a href="#leHTML">HTML | La Structure</a></li>
+              <li><a href="#leCSS">CSS | Le Style</a></li>
+              <li><a href="#leJS">JS | l'intéractivité</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </li>
 <!--Module HTML ----------------------------------------------------------->
-    <li class="menuGroup">
+      <li class="menuGroup">
       <button class="accordionBtn" data-module="HTML" aria-expanded="false">
         <img src="./img/html.svg" class="picto" alt="Logo HTML">
         <span>HTML 5</span>
@@ -43,9 +87,9 @@
           </ul>
         </li>
       </ul>
-    </li>
+      </li>
 <!--Module CSS ------------------------------------------------------------->
-    <li class="menuGroup">
+      <li class="menuGroup">
       <button class="accordionBtn" data-module="CSS" aria-expanded="false">
         <img src="./img/css.svg" class="picto" alt="Logo CSS">
         <span>CSS 3</span>
@@ -101,10 +145,9 @@
           </ul>
         </li>
       </ul>
-    </li>
-
+      </li>
 <!--Module JavaScript ------------------------------------------------------>
-    <li class="menuGroup">
+      <li class="menuGroup">
       <button class="accordionBtn" data-module="JS" aria-expanded="false">
         <img src="./img/js.svg" class="picto" alt="Logo JS">
         <span>JavaScript</span>
@@ -137,7 +180,8 @@
           </ul>
         </div>
       </div>
-    </li>
-  </ul>
-  
+      </li>
+    </ul>
+  </section>
+
 </nav>
