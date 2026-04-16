@@ -1,6 +1,4 @@
-/* =========================================
-   VARIABLES GLOBALES (LE THÈME)
-   ========================================= */
+/* VARIABLES GLOBALES (LE THÈME) ============ */
 :root {
   /* Couleurs Principales */
   --primary-color: #1e3a5f;
@@ -25,9 +23,7 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
 }
 
-/* =========================================
-   RESET & BASE
-   ========================================= */
+/* RESET & BASE ============================ */
 * {
   margin: 0;
   padding: 0;
@@ -48,9 +44,7 @@ body {
   line-height: 1.7; /* Améliore la lisibilité des longs textes */
 }
 
-/* =========================================
-   HEADER & FOOTER
-   ========================================= */
+/* HEADER & FOOTER ========================== */
 header#topBar, footer#downBar {
   margin-left: 260px;
   background: var(--primary-color);
@@ -89,9 +83,7 @@ footer#downBar {
   opacity: 0.9;
 }
 
-/* =========================================
-   SIDEBAR (MENU)
-   ========================================= */
+/* SIDEBAR (MENU) =========================== */
 #sideBarMenu {
   position: fixed;
   top: 0;
@@ -137,12 +129,12 @@ footer#downBar {
   background-color: var(--primary-light);
   border-color: var(--primary-light);
 }
-#sideBarMenu ul {
+#sideBarMenu ul{
   list-style: none;
 }
 
 #sideBarMenu a {
-  text-decoration: none;
+  text-decoration : none;
   color: var(--text-main);
   padding: 8px 12px;
   display: inline-block;
@@ -167,9 +159,7 @@ footer#downBar {
   padding-left: 8px; /* Ajusté pour compenser la bordure */
 }
 
-/* =========================================
-   ACCORDÉON
-   ========================================= */
+/*ACCORDÉON ================================ */
 .accordionBtn {
   width: 100%;
   background: white;
@@ -238,10 +228,21 @@ footer#downBar {
   font-size: 0.95rem;
 }
 
-/* =========================================
-   CONTENU PRINCIPAL (MAIN WINDOW)
-   ========================================= */
+/* CONTENU PRINCIPAL (MAIN WINDOW) ========== */
+#imtsPhoto{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+.imtsPhoto :hover {
+  transform: translateX(4px);
+}
+
 #mainWindow {
+  display: block;
   margin-left: 260px;
   padding: 40px;
   min-height: 100vh;
@@ -276,6 +277,7 @@ section[id], article[id] {
 }
 
 /* Cartes (Articles) */
+
 #mainWindow article {
   background-color: var(--bg-card);
   padding: 2rem;
@@ -284,30 +286,31 @@ section[id], article[id] {
   box-shadow: var(--shadow-md);
   border: 1px solid rgba(0,0,0,0.02);
 }
-/* =========================================
-   HIÉRARCHIE DES TITRES DANS LES CARTES
-   ========================================= */
-/* Titre principal de la carte (H2) */
+
+#mainWindow article span{
+  display: block;
+  font-weight: bolder;
+  color: var(--accent-color);
+}
+
+/* HIÉRARCHIE DES TITRES DANS LES CARTES ==== */
 #mainWindow article h2 {
   font-size: 1.8rem;
   color: var(--primary-color);
   margin-bottom: 25px;
-  font-weight: 800; /* Très en gras pour s'imposer */
+  font-weight: 800;
 }
 
-/* Sous-titres des sections (H3) */
 #mainWindow article h3 {
   font-size: 1.3rem;
-  color: var(--accent-color); /* On utilise l'orange pour bien les distinguer */
+  color: var(--accent-color);
   border-bottom: 1px solid var(--border-color); /* Ligne fine et discrète */
   padding-bottom: 8px;
   margin-top: 35px; /* On aère bien au-dessus */
   margin-bottom: 15px;
 }
 
-/* =========================================
-   TYPOGRAPHIE & LISTES (Indentation et Espacement)
-   ========================================= */
+/* TYPOGRAPHIE & LISTES (Indentation et Espacement) ===== */
 /* 1. Restaurer l'indentation de base */
 #mainWindow ul,
 #mainWindow ol {
@@ -328,24 +331,20 @@ section[id], article[id] {
   margin-bottom: 0;    /* Évite un double espacement en bas */
 }
 
-/* =========================================
-   ALIGNEMENT DES ICÔNES (Introduction)
-   ========================================= */
-#intro p.avecPicto {
+/* ALIGNEMENT DES ICÔNES (Introduction) ===== */
+#rolesLangages p.avecPicto {
   display: flex;       /* Active Flexbox pour ce paragraphe */
   align-items: center; /* Centre l'image et le texte verticalement */
   gap: 12px;           /* Crée un espace régulier entre l'image et le texte */
   margin-bottom: 15px; /* Espace un peu les lignes entre elles */
 }
 
-#intro p.avecPicto img.picto {
+#rolesLangages p.avecPicto img.picto {
   width: 24px;         /* On force une taille identique pour toutes les icônes */
   height: 24px;
   flex-shrink: 0;      /* Empêche l'image de s'écraser si le texte est très long */
 }
-/* =========================================
-   LIGNES DE SÉPARATION (Pour structurer les sections)
-   ========================================= */
+/*LIGNES DE SÉPARATION (Pour structurer les sections) ======== */
 /* Ajoute une fine ligne sous les grands points numérotés */
 #mainWindow article > ol > li {
   border-bottom: 1px solid var(--border-color);
@@ -361,9 +360,8 @@ section[id], article[id] {
   padding-bottom: 0;
 }
 
-/* =========================================
-   ÉLÉMENTS SPÉCIFIQUES (Code, Tableaux...)
-   ========================================= */
+/*ÉLÉMENTS SPÉCIFIQUES (Code, Tableaux...) ====================== */
+
 code {
   background: var(--primary-light);
   padding: 3px 6px;
@@ -410,7 +408,20 @@ details summary:hover {
   color: var(--accent-color);
 }
 
-/* Tableaux Modernisés */
+figure {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: fit-content; /* Le cadre s'adapte à la taille de l'image */
+  margin: auto;
+}
+
+figcaption {
+  color: rgb(24, 3, 93);
+  font-style: italic;
+  padding: 5px;
+  text-align: center;
+}
+/* Tableaux*/
 table {
   width: 100%;
   border-collapse: collapse;
@@ -442,9 +453,8 @@ table tbody tr:hover {
 }
 
 
-/* =========================================
-   RESPONSIVE (MOBILES & TABLETTES)
-   ========================================= */
+
+/* RESPONSIVE (MOBILES & TABLETTES) =============== */
 @media (max-width: 768px) {
   header#topBar, footer#downBar {
     margin-left: 0;
@@ -478,9 +488,7 @@ table tbody tr:hover {
   }
 }
 
-/* =========================================
-   FIL D'ARIANE (BREADCRUMB)
-   ========================================= */
+/* FIL D'ARIANE (BREADCRUMB) =============== */
 .breadcrumb {
   font-size: 0.95rem;
   color: var(--text-main);
@@ -510,9 +518,7 @@ table tbody tr:hover {
   font-weight: 600;
 }
 
-/* =========================================
-   BOUTON RETOUR EN HAUT
-   ========================================= */
+/* BOUTON RETOUR EN HAUT  =================== */
 #scrollTopBtn {
   position: fixed;
   bottom: 40px;
