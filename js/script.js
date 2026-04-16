@@ -33,7 +33,7 @@ function initSidebarLogic() {
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
-      // ... (Garde ta logique de fermeture d'accordéon ici) ...
+      // ... (Logique de fermeture d'accordéon ici) ...
 
       // Basculer l'actuel
       const allContents = btn.closest('.menuGroup').querySelectorAll(".accordionContent");
@@ -46,6 +46,8 @@ function initSidebarLogic() {
 
       if (moduleName) {
         const fileMap = {
+          'PrepaNum' : './module_IntroMetiersDuNumerique.html',
+          'introLang': './module_IntroductionLangages.html',
           'HTML': './module_HTML.html',
           'CSS': './module_CSS.html',
           'JS': './module_JS.html'
