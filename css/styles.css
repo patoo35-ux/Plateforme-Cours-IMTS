@@ -410,9 +410,9 @@ details summary:hover {
 
 figure {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 20px;
   width: fit-content; /* Le cadre s'adapte à la taille de l'image */
-  margin: auto;
+  margin-top: 20px;
 }
 
 figcaption {
