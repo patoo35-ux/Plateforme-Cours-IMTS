@@ -9,33 +9,92 @@
         lettre et manipuler des nombres (des 0 et des 1).
     </p>
         <article id="hardWare">
-            <h4>Les quatre composants principaux (Le "Corps")</h4>
-            <ul>Si on compare un ordinateur à une cuisine, voici comment cela s'organise :
-                <li><strong>Le Processeur (CPU) : </strong>C'est le chef cuisinier. C'est lui qui 
-                    exécute les ordres et fait les calculs. Il est extrêmement rapide, mais il a 
-                    besoin qu'on lui dise quoi faire.</li>
-                <li><strong>La Mémoire Vive (RAM) : </strong>C'est le plan de travail. C'est là que 
-                    le chef pose les ingrédients dont il a besoin tout de suite. Plus le plan de 
-                    travail est grand, plus l'ordinateur peut gérer de tâches en même temps. Quand 
-                    on éteint l'ordinateur, ce plan de travail est vidé.</li>
-                <li><strong>Le Disque Dur (Stockage) :</strong>C'est le placard ou le frigo. On y 
-                    range les recettes (logiciels) et les aliments (photos, documents) pour une 
-                    utilisation à long terme. Même éteint, le placard reste plein</li>
-                <li><strong>La Carte Mère :</strong>C'est le sol de la cuisine qui relie tout le 
-                    monde pour que les composants puissent communiquer.</li>
+            <h4>L'Anatomie d'un ordinateur</h4>
+            <ul>
+                <li><strong>Le Processeur (CPU) : </strong>C'est l'unité de calcul. C'est une petite puce carrée 
+                    branchée directement sur la carte mère. Il reçoit les instructions des logiciels sous forme 
+                    de code binaire (des 0 et des 1), effectue les opérations mathématiques et logiques correspondantes, 
+                    et distribue les résultats aux autres composants (comme l'écran pour l'affichage).</li>
+                <li><strong>La Mémoire Vive (RAM) : </strong>C'est l'espace de stockage temporaire. Ce 
+                    sont de petites barrettes rectangulaires branchées sur la carte mère.
+                    Elle contient uniquement les données des programmes qui sont ouverts et en cours 
+                    d'utilisation à un instant précis. Sa vitesse de lecture et d'écriture est ultra-rapide, 
+                    mais elle est "volatile" : elle se vide entièrement et instantanément dès que l'ordinateur 
+                    s'éteint.</li>
+                <li><strong>Le Disque Dur (ou SSD) :</strong> C'est l'espace de stockage permanent. Il 
+                    conserve nos fichiers, nos applications et nos photos, même lorsque l'ordinateur est privé de 
+                    courant. Il peut contenir énormément de données, mais sa vitesse de lecture est relativement lente.</li>
+                <li><strong>La Carte Mère :</strong> C'est le grand circuit imprimé central de l'ordinateur. Le processeur, 
+                    la RAM et le disque dur (ainsi que toutes les autres pièces) y sont physiquement branchés. Elle sert de 
+                    réseau de communication, permettant aux données de circuler d'un composant à un autre sous forme de 
+                    signaux électriques.</li>
+                <li><strong>La carte graphique (GPU) :</strong> C'est une pièce spécialisée (parfois intégrée au processeur, 
+                    parfois ajoutée séparément sur la carte mère) qui se concentre uniquement sur les calculs nécessaires pour 
+                    afficher des images sur ton écran.</li>
+                <li><strong>Le système de refroidissement (Ventilateurs et radiateurs) :</strong> L'électricité qui traverse 
+                    le processeur et la carte graphique crée énormément de chaleur. Ces ventilateurs soufflent de l'air en 
+                    permanence pour empêcher les composants de surchauffer et de s'éteindre par sécurité</li>
+                <li><strong>Les périphériques (Clavier, souris, écran) :</strong> Ce sont les outils externes qui te permettent 
+                    d'envoyer des commandes matérielles (en tapant ou en cliquant) et de voir le résultat renvoyé par la carte 
+                    graphique (l'écran).</li>
             </ul>
-              
+
+            <p>Concrètement, quand on décide d'ouvrir un logiciel, le processeur va chercher les données de ce logiciel 
+                dans le disque dur et les copie dans la mémoire RAM pour pouvoir les lire et les utiliser à toute vitesse.</p>
+
+            <details>
+                <summary>La RAM</summary>
+                <p>Si on est en train d'écrire un long texte et qu'une coupure de courant éteint brusquement notre ordinateur 
+                    avant qu'ont ait cliqué sur le bouton "Sauvegarder", le texte sera malheureusement perdu.</p>
+                <p>La RAM est un composant « volatil » : elle nécessite une alimentation électrique continue pour retenir 
+                    les informations. Dès que le courant est coupé, son contenu est instantanément effacé.</p>
+                <p>À l'inverse, lorsqu'on clique sur le bouton « Sauvegarder », le processeur prend les données de notre texte 
+                    présentes dans la RAM et les écrit sur le disque dur. Là, elles sont inscrites de manière permanente, sans 
+                    avoir besoin d'électricité pour subsister.</p>
+            </details>
+
+            <details>
+                <summary>La Carte graphique</summary>
+                <ul>
+                    <li>Sa mission unique : C'est le composant spécialisé qui se charge exclusivement de calculer et de générer 
+                        les images qui vont s'afficher sur ton écran.</li>
+                    <li>Comment elle travaille : L'écran est composé de millions de minuscules points de lumière appelés "pixels". 
+                        La carte graphique doit calculer la couleur exacte que chaque pixel doit afficher à un instant précis. 
+                        Si on joue à un jeu vidéo ou regarde un film, la carte graphique doit recalculer la couleur de tous ces 
+                        millions de pixels des dizaines de fois par seconde pour créer le mouvement.</li>
+                    <li>La différence avec le processeur (CPU) : Le processeur central est excellent pour accomplir des tâches très 
+                        complexes, mais il les traite généralement les unes après les autres. La carte graphique, elle, possède des 
+                        milliers de mini-processeurs. Ils sont moins intelligents individuellement, mais ils travaillent tous en même 
+                        temps. C'est ce qui lui permet de calculer des milliers de pixels simultanément.</li>
+                </ul>
+            </details>
+
+            <p>L'ensemble de ces pièces physiques (processeur, RAM, disque dur, carte mère...) constitue ce que l'on appelle 
+                <strong>le matériel (ou hardware)</strong>.</p><br>
+            
+            <p>Cependant, ce matériel est inerte sans instructions. Pour que le processeur sache comment écrire un fichier sur le 
+                disque dur ou comment afficher une lettre quand tu tapes sur ton clavier, il a besoin d'un logiciel de base très 
+                spécifique qui gère toutes ces opérations complexes.</p><br>
+
+                <ul>
+                    <li><strong>Le système d'exploitation (comme Windows, macOS ou Linux) : </strong> C'est le tout premier logiciel 
+                        qui démarre quand tu allumes la machine. Il sert d'intermédiaire strict entre toi, tes autres logiciels (comme 
+                        ton navigateur internet) et les pièces physiques. C'est lui qui dit au processeur quand calculer, à la RAM quoi 
+                        stocker, et au disque dur quoi sauvegarder.</li>
+                </ul>
         </article>
+
         
         <article id="fonctionComputer">
-            <h4>Le mode de fonctionnement (Le "Cerveau")</h4>
+            <h4>Le mode de fonctionnement</h4>
             <p>L'ordinateur fonctionne selon un cycle très simple appelé <strong>Entrée -> Traitement 
-                -> Sortie</strong>.</p>   
+                -> Sortie</strong>. C'est la base absolue du fonctionnement d'un ordinateur. Voici comment cela marche, de manière très 
+                concrète :</p>   
                 <ol>
                     <li><strong>L'entrée (Input)</strong>
-                        <p>C'est le moment où vous donnez une information à la machine.
+                        <p>C'est le moment où on donne une information à la machine.
                         </p>
-                        <p>Exemple : Vous tapez sur une touche du clavier ou vous bougez la souris.
+                        <p>Exemple : On tape sur une touche du clavier ou on bouge la souris.
                         </p>
                     </li>
                     <li><strong>Le traitement (Processing)</strong>
@@ -43,41 +102,34 @@
                             français ou l'anglais. Il ne comprend que le binaire : une suite de 0 (le 
                             courant ne passe pas) et de 1 (le courant passe).
                         </p>
-                        <p>Le logiciel (comme Windows, macOS ou une application) traduit votre clic en 
+                        <p>Le logiciel (comme Windows, macOS ou une application) traduit notre clic en 
                             une série de calculs mathématiques que le processeur résout instantanément.
                         </p>
                     </li>
                     <li><strong>La sortie (Output)</strong>
-                         <p>Une fois le calcul fini, l'ordinateur vous montre le résultat.
+                         <p>Une fois le calcul fini, l'ordinateur nous montre le résultat.
                         </p>
                         <p>Exemple : Une lettre s'affiche sur l'écran, un son sort des enceintes, ou une page 
                             s'imprime.
                         </p>
                     </li>
-                    <li><strong>Le rôle du Système d'Exploitation (OS)</strong>
-                        <p>Le système d'exploitation (Windows, Android, iOS) est le chef d'orchestre. Sans lui, 
-                        l'ordinateur ne serait qu'un tas de métal et de plastique. C'est lui qui fait le 
-                        lien entre vous (l'utilisateur) et les composants électroniques. Il gère l'affichage 
-                        des fenêtres, la souris et s'assure que le processeur ne s'emmêle pas les pinceaux.
-                        </p>
-                    </li>
                 </ol>
 
             <p><strong>En résumé : </strong>Un ordinateur est une machine qui reçoit des données, les 
-                    transforme très vite grâce à des calculs mathématiques (en binaire), et vous renvoie le 
+                    transforme très vite grâce à des calculs mathématiques (en binaire), et nous renvoie le 
                     résultat de façon compréhensible.
             </p>
         </article>        
       
 
-        <article id="parlerRobot">
-            <h4>Le 'Parler Robot', c'est ce qu'on appelle le binaire.</h4>
+        <article id="langageBinaire">
+            <h4>Le Langage binaire.</h4>
                 <p>Voici comment une machine transforme des impulsions électriques en photos, en musique ou 
                     en texte.</p>
                     <ol>
                         <li><strong>Tout est une question d'interrupteur</strong>
                             <ul>Au cœur de l'ordinateur, il y a des milliards de minuscules composants 
-                                appelés transistors. Imagine-les comme des mini-interrupteurs de lumière :
+                                appelés transistors. Imaginons-les comme des mini-interrupteurs de lumière :
                                 <li>0 = L'interrupteur est sur "OFF" (le courant ne passe pas).</li>
                                 <li>1 = L'interrupteur est sur "ON" (le courant passe).</li>
                                 <p>C'est la seule chose qu'un ordinateur comprend physiquement. Pour lui, 
@@ -85,12 +137,12 @@
                             </ul>
                         </li>
                         <li><strong>Comment le 0 et le 1 deviennent des lettres ?</strong>
-                            <ul>Comme le robot n'a que deux doigts pour compter (0 et 1), il utilise des 
-                                codes. On a créé un dictionnaire universel pour lui, souvent appelé 
+                            <ul>Comme la machine n'a que deux doigts pour compter (0 et 1), elle utilise des 
+                                codes. On a créé un dictionnaire universel pour elle, souvent appelé 
                                 <strong>l'ASCII</strong> ou <strong>l'Unicode</strong>.
-                                <li>Par exemple, pour le robot, la lettre A majuscule se dit : 01000001.</li>
+                                <li>Par exemple, pour l'ordinateur, la lettre A majuscule se dit : 01000001.</li>
                                 <li>La lettre B se dit : 01000010.</li>
-                                <p>Quand vous tapez "A" sur votre clavier, vous envoyez en réalité une 
+                                <p>Quand on tape "A" sur notre clavier, on envoye en réalité une 
                                     décharge électrique spécifique qui dit au processeur : "Éteint, Allumé, 
                                     Éteint, Éteint, Éteint, Éteint, Éteint, Allumé".</p>
                             </ul>
@@ -98,12 +150,31 @@
                         <li><strong>Le vocabulaire : Bit et Octet</strong>
                             <ul>Pour mesurer ce langage, on utilise des unités précises :
                                 <li><strong>Le Bit : </strong>C’est l’unité de base, un seul 0 ou un seul 1. 
-                                    C'est une lettre du langage robot.</li>
-                                <li><strong>L’Octet (Byte en anglais) : </strong>C’est un groupe de 8 bits 
-                                    (ex: 01101011). C'est l'équivalent d'un "mot" pour le robot. Un octet 
-                                    suffit pour définir un caractère (une lettre ou un chiffre).</li>
+                                    Cette unité d'information la plus basique (un 0 ou un 1) s'appelle un bit. </li>
+                                <li><strong>L’Octet (Byte en anglais) : </strong>Avec un seul bit, l'ordinateur ne
+                                     peut pas dire grand-chose. Il va donc les regrouper. Le standard est de les 
+                                     regrouper par paquets de 8. <strong>Un groupe de 8 bits s'appelle un octet.</strong> 
+                                    En combinant des 0 et des 1 dans ces 8 cases, l'ordinateur peut créer 256 
+                                    combinaisons différentes. Chaque combinaison correspond à un nombre précis.</li>
                             </ul>
-                            <table>
+                        </li>
+                        <li>De la lettre à la vidéo
+                            <ul>Une fois que l'ordinateur sait utiliser l'électricité pour compter 
+                                et reconnaître des lettres, il peut tout faire. Tout n'est qu'une 
+                                question de conventions
+                                <li>Un texte est une très longue suite de ces groupes de 8 bits.</li>
+                                <li>Une couleur sur ton écran est simplement définie par un nombre 
+                                    binaire précis (par exemple, un certain code signifie « rouge vif »).</li>
+                                <li>Un son est défini par une série de nombres très rapides qui indiquent au 
+                                    haut-parleur comment vibrer.</li>
+                            </ul>
+                            Tout ce qu'on voit sur un écran est donc, à la base, un gigantesque tableau de millions de 
+                            minuscules interrupteurs électriques qui s'allument et s'éteignent à une vitesse vertigineuse 
+                            grâce au processeur.
+                        </li>
+                    </ol>
+                      
+                        <table>
                                 <tbody>
                                     <tr>
                                         <th>Unité</th>
@@ -127,15 +198,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </li>
-                        <li>4. Et pour les images et les couleurs ?</li>
-                        <p>Pour "parler" en images, le robot découpe l'écran en millions de petits points : 
-                            les pixels. Pour chaque pixel, il utilise un code binaire qui définit l'intensité 
-                            de Rouge, de Vert et de Bleu (RVB).</p>
-                            <p>Si le robot reçoit 11111111 pour le rouge, le vert et le bleu en même temps, 
-                                il sait qu'il doit allumer le pixel en blanc. S'il reçoit des 0, le pixel reste 
-                                noir.</p>
-                    </ol>
+                    
                 
                 <h5>En résumé</h5>
                 <ol>Le langage robot est une abstraction
@@ -148,4 +211,189 @@
                     milliards de signaux par seconde !</p>
         </article>
 
+        <article id="bios">
+            <h4>Le BIOS</h4>
+            <p>Le BIOS ! Le chaînon manquant entre les pièces physiques et le reste de l'ordinateur.</p>
+            <p><strong>Le BIOS</strong> (pour Basic Input/Output System, ou Système de base d'entrée/sortie) 
+                est le tout premier petit programme informatique qui s'exécute lorsque'on appuie sur le 
+                bouton d'allumage de l'ordinateur.</p>
+            <p>Ce programme n'est pas stocké sur le disque dur. Il est gravé de manière permanente sur une 
+                toute petite puce électronique soudée directement sur la carte mère. Il fait partie intégrante 
+                de la machine dès sa fabrication.</p>
+                <h5>Ses 3 missions lors de l'allumage</h5>
+                <ul>Le travail du BIOS ne dure généralement que deux ou trois secondes à chaque démarrage. Il 
+                    exécute trois tâches dans un ordre strict :
+                    <li><strong>L'inspection matérielle (Le test POST) : </strong>Dès qu'il est alimenté en 
+                        électricité, le BIOS fait un appel express à toutes les pièces physiques. Il envoie un 
+                        signal pour vérifier que le processeur est présent, que la RAM fonctionne correctement, 
+                        et que le clavier est bien branché. Si une pièce vitale est cassée ou manquante, le BIOS 
+                        bloque le démarrage et émet souvent un "bip" sonore d'erreur.</li>
+                    <li><strong> L'activation de l'écran : </strong>C'est le BIOS qui envoie la toute première 
+                        instruction à la carte graphique pour allumer ton écran. C'est à ce moment-là que tu vois 
+                        généralement apparaître le logo de la marque de ton ordinateur (comme Dell, Asus, ou Lenovo).</li>
+                    <li><strong>Le passage de relais : </strong>Une fois qu'il s'est assuré que le matériel est en 
+                        bon état, le BIOS va chercher sur le disque dur le programme principal, c'est-à-dire le système 
+                        d'exploitation (Windows, macOS, ou Linux). Dès qu'il le trouve, le BIOS lui transmet le contrôle 
+                        total de l'ordinateur et se met en retrait.</li>
+                </ul>
+                <details>
+                    <summary>Pour résumer, le BIOS est l'interrupteur d'éveil.  </summary>
+                    C'est le petit programme primitif qui réveille le matériel, vérifie que rien n'est cassé, et passe 
+                    les commandes au système d'exploitation pour que tu puisses utiliser ton ordinateur.
+                    <p>Précision : sur les ordinateurs fabriqués ces dix dernières années, le BIOS classique a été remplacé 
+                        par une version plus moderne appelée UEFI. Le rôle reste exactement le même, mais le programme est 
+                        plus rapide et permet d'utiliser la souris si l'on a besoin d'aller modifier des réglages techniques 
+                        dès l'allumage.</p>
+                </details>
+        </article>
+
+        <article id="terminal">
+            <h4>Le Terminal</h4>
+            <p>Egalement appelé "invite de commande" ou "console"</p>
+                <ol>Il existe deux manières principales de donner des ordres à ton système d'exploitation (Windows, macOS ou 
+                    Linux) :
+                    <li><strong>L'interface graphique : </strong>C'est ce qu'on utilise au quotidien. Le processeur et la carte 
+                        graphique travaillent ensemble pour dessiner des fenêtres, des icônes et des boutons sur ton écran. On 
+                        utilise la souris pour pointer, glisser et cliquer. C'est visuel, mais cela demande un effort de calcul 
+                        supplémentaire à l'ordinateur pour générer cet environnement.</li>
+                    <li><strong>Le Terminal (L'interface textuelle) : </strong>C'est l'accès brut. Il n'y a plus de dessins, 
+                        d'icônes ou de curseur de souris. C'est une simple fenêtre (généralement à fond noir) où l'on ne peut 
+                        utiliser que le clavier. On donne des ordres au système d'exploitation en tapant directement des mots 
+                        spécifiques, appelés des "commandes".</li>
+                </ol>
+                <details>
+                    <summary>Comment cela fonctionne concrètement :</summary>
+                    <ol>
+                        <li>Tu ouvres le Terminal. Un petit trait clignote pour t'indiquer que l'ordinateur attend tes instructions.</li>
+                        <li>Tu tapes une ligne de texte (par exemple, un code précis qui signifie "crée un nouveau dossier").</li>
+                        <li>Tu appuies sur la touche "Entrée".</li>
+                        <li>Le système d'exploitation lit ton texte instantanément, l'exécute, et affiche la réponse (ou un message d'erreur 
+                            si la commande est mal orthographiée) en dessous, sous forme de texte.</li>
+                    </ol>
+                </details>
+
+            <h5>Pourquoi l'utiliser plutôt que la souris ?</h5>
+            <ul>Même si cela semble moins intuitif que de cliquer sur des icônes, les professionnels de l'informatique utilisent 
+                le Terminal tous les jours pour des raisons très logiques :
+                <li><strong>La rapidité et l'automatisation : </strong>Il est beaucoup plus rapide de taper une seule phrase pour 
+                    dire à l'ordinateur "trouve tous les fichiers images de mon disque dur et déplace-les dans ce dossier" que 
+                    de le faire manuellement à la souris pendant des heures.</li>
+                <li><strong>Le contrôle total : </strong>L'interface graphique avec la souris ne te montre que ce que les créateurs 
+                    du système ont bien voulu dessiner sous forme de boutons. Le Terminal te donne accès à l'intégralité des 
+                    fonctions et des réglages cachés de la machine.</li>
+                <li><strong>L'économie de ressources : </strong> Sans aucune image, couleur complexe ou animation à calculer, 
+                    l'ordinateur consacre 100 % de sa puissance au traitement pur des données.</li>
+            </ul>
+            <p>En résumé, le Terminal est un outil de communication direct : tu enlèves la couche de décoration visuelle pour parler 
+                au moteur de la machine dans son propre langage textuel.</p>
+
+            <details>
+                <summary>Un exemple concret </summary>
+                <ol>Vérifier si la connexion physique entre ton ordinateur et le serveur de Wikipédia fonctionne bien, et mesurer sa 
+                    vitesse.
+                    <li>Tu ouvres le Terminal.</li>
+                    <li>Tu tapes exactement cette commande : <code>ping wikipedia.org</code></li>
+                    <li>Tu appuies sur la touche "Entrée".</li>
+                </ol>
+                <p>Immédiatement, le système d'exploitation va exécuter cet ordre et t'afficher le résultat en texte brut, ligne par 
+                    ligne. Cela ressemblera à ceci :</p>
+                    <pre>
+Envoi d'une requête 'ping' sur wikipedia.org [198.35.26.96] avec 32 octets de données :
+Réponse de 198.35.26.96 : octets=32 temps=12 ms
+Réponse de 198.35.26.96 : octets=32 temps=14 ms
+Réponse de 198.35.26.96 : octets=32 temps=13 ms
+                    </pre>
+                <ul>Analyse factuelle de ce qui vient de se passer :
+                    <li><strong>Le DNS a fonctionné :</strong> Tu as tapé des mots, mais la première ligne montre que le Terminal a 
+                        automatiquement interrogé le DNS pour trouver l'adresse IP chiffrée exacte (<code>198.35.26.96</code>).</li>
+                    <li><strong>L'action : </strong>Ton ordinateur a envoyé un minuscule paquet contenant 32 octets de données (une 
+                        courte suite de 0 et de 1) vers ce serveur, simplement pour voir s'il répondait.</li>
+                    <li><strong>La mesure du temps : </strong>L'information <code>temps=12 ms</code>indique que ton paquet de données 
+                        a mis très exactement 12 millisecondes (soit 0,012 seconde) pour traverser les câbles d'Internet, atteindre 
+                        le serveur cible, et revenir jusqu'à ta machine.</li>
+                </ul>
+                <p>C'est l'essence même du Terminal : c'est brut, il n'y a aucune image ni bouton, mais cela te donne une information 
+                    technique instantanée et ultra-précise sur ce que fait ta machine.</p>
+            </details>
+        </article>
+
 </Section>
+
+<section id="internet&web">
+    <h3>Internet || Web</h3>
+    <p></p>
+        <article id="internet">
+            <h4>Internet et son Fonctionnement</h4>
+            <p>Internet est une immense infrastructure physique. C'est tout simplement le plus 
+                grand réseau d'ordinateurs connectés les uns aux autres dans le monde.</p>
+                <ul>Les quatre éléments bien réels qui rendent cela possible :
+                    <li><strong>Les câbles (La connexion physique) : </strong>À la base, Internet 
+                        est un réseau mondial de fils. Il y a d'immenses câbles sous-marins en fibre 
+                        optique qui relient les continents, des câbles enterrés le long des routes, 
+                        et des câbles qui arrivent jusqu'à la box Internet de nos domiciles. Même quand 
+                        on utilises le Wi-Fi de notre téléphone, les ondes voyagent sur une très courte 
+                        distance (jusqu'à l'antenne ou la box) avant de rejoindre ce réseau de câbles 
+                        physiques.</li>
+                    <li><strong>L'adresse IP (L'identifiant unique) : </strong>Pour que les données aillent 
+                        au bon endroit, chaque appareil connecté (ordinateur, téléphone, télévision) reçoit 
+                        un numéro unique appelé "Adresse IP" (par exemple : 192.168.1.5). C'est la coordonnée 
+                        mathématique exacte de la machine sur le réseau.</li>
+                    <li><strong>Les serveurs (Les ordinateurs de stockage) : </strong>Quand on visite un site 
+                        web, on se connecte en réalité à un autre ordinateur. Ces ordinateurs spécialisés 
+                        s'appellent des "serveurs". Ils n'ont souvent ni écran ni clavier ; ce sont de grosses 
+                        unités centrales très puissantes, allumées 24h/24, dont le seul travail est de stocker 
+                        les fichiers (textes, images, vidéos) des sites web sur de gros disques durs, et de les 
+                        envoyer à ceux qui les demandent.</li>
+                    <li><strong>Les routeurs (L'aiguillage) : </strong>Entre un ordinateur en France et un serveur 
+                        aux États-Unis, il y a des dizaines de croisements de câbles. À chaque carrefour se trouve 
+                        une machine appelée "routeur". Son travail est de lire l'adresse IP de destination sur ta 
+                        demande, et d'envoyer les données dans le bon câble pour qu'elles arrivent le plus vite 
+                        possible.</li>
+                </ul>
+
+                <details>
+                    <summary>En résumé, l'action concrète qui se déroule en une fraction de seconde :</summary>
+                    <ol> 
+                        <li>Tu cliques sur un lien. Ton ordinateur crée un petit paquet de données contenant ta 
+                            demande, ton adresse IP (pour le retour) et l'adresse IP du serveur cible.</li>
+                        <li>Ce paquet part dans les câbles de chez toi, puis saute de routeur en routeur à la 
+                            vitesse de la lumière (dans la fibre optique).</li>
+                        <li>Le serveur reçoit la demande, trouve la page web sur son disque dur, la traduit en 
+                            une suite de zéros et de uns, et renvoie ces signaux électriques vers ton adresse IP.</li>
+                        <li>Les données font le chemin inverse, arrivent dans la mémoire RAM de ton ordinateur, et ton 
+                            processeur demande à la carte graphique de les transformer en texte et en images sur ton écran.</li>
+                    </ol>
+                </details>
+        </article>
+
+        <article id="ip&dns">
+            <h4>Adresses IP et système DNS</h4>
+            <p>Les adresses IP sont de longues suites de chiffres impossibles à retenir pour 
+                un humain. Pourtant, dans ton navigateur, tu tapes des mots simples comme "wikipedia.org".</p>
+                <h5>Comment notre ordinateur arrive à traduire automatiquement ces mots en adresses IP chiffrées, 
+                    ce que l'on appelle <strong>le système DNS </strong>,(pour Domain Name System ou Système de 
+                    Noms de Domaine) ?</h5>
+                    <p>Le problème de base est simple : les ordinateurs ont besoin d'une adresse IP composée de 
+                        chiffres (comme 198.35.26.96) pour se trouver, mais le cerveau humain retient beaucoup mieux 
+                        les mots (comme wikipedia.org).</p>
+                    <p>Le DNS a été inventé pour résoudre ce décalage. C'est une immense base de données automatisée, 
+                        répartie sur des serveurs spécialisés à travers le monde.</p>
+                    <ol>Voici les étapes exactes qui se déroulent en une fraction de seconde lorsque tu navigues sur 
+                        Internet :
+                        <li><strong>La saisie : </strong>Je tape "wikipedia.org" dans la barre de ton navigateur et 
+                            j'appuie sur "Entrée". À ce stade, l'ordinateur ne sait pas où aller physiquement.</li>
+                        <li><strong>La question au serveur DNS : </strong>l'ordinateur envoie un signal automatique 
+                            à un serveur spécialisé (le serveur DNS, souvent géré par ton fournisseur d'accès à Internet). 
+                            La question est simple : "Quelle est l'adresse IP exacte qui correspond au texte 'wikipedia.org' ?"</li>
+                        <li><strong>La recherche : </strong>Le serveur DNS consulte sa base de données. S'il ne connaît pas la 
+                            réponse, il va interroger d'autres serveurs DNS de plus haut niveau jusqu'à trouver l'information exacte.</li>
+                        <li><strong>La réponse : </strong>Le serveur DNS renvoie la suite de chiffres à l'ordinateur (par exemple : 
+                            198.35.26.96)</li>
+                        <li><strong>La connexion directe : </strong>Maintenant que l'ordinateur possède la bonne adresse IP, il n'a 
+                            plus besoin du DNS. Il utilise le réseau de câbles et de routeurs pour aller se connecter directement au 
+                            serveur de Wikipédia et télécharger la page web.</li>
+                    </ol>
+                    <p>Tout ce processus se fait en arrière-plan, de manière invisible, à chaque fois qu'on clique sur un lien ou 
+                        qu'on tape le nom d'un site.</p>
+        </article>
+</section>
