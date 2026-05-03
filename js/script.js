@@ -44,13 +44,14 @@ function initSidebarLogic() {
       const moduleName = btn.dataset.module;
       const moduleTitle = btn.querySelector('span').innerText; // Récupère le texte "HTML 5", "CSS 3", etc.
 
-      if (moduleName) {
-        const fileMap = {
+      if (moduleName) {   //Changer data-module="" dans la balise <button class="accordBtn" du fichier HTML à charger
+        const fileMap = { 
           'PrepaNum' : './module_IntroMetiersDuNumerique.html',
           'introLang': './module_IntroductionLangages.html',
           'HTML': './module_HTML.html',
           'CSS': './module_CSS.html',
-          'JS': './module_JS.html'
+          'JS': './module_JS.html',
+          'UX': './module_UX.html'
         };
         if (fileMap[moduleName]) chargerModule(fileMap[moduleName], moduleTitle);
       }
